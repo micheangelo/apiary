@@ -20,8 +20,8 @@ import pl.manager.apiary.model.Cost;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private Cost newCost;
+	/*@Autowired
+	private Cost newCost;*/
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -35,7 +35,7 @@ public class HomeController {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-		String formattedDate = dateFormat.format(date) + newCost.getDescription();
+		String formattedDate = dateFormat.format(date);// + newCost.getDescription();
 
 		model.addAttribute("serverTime", formattedDate);
 

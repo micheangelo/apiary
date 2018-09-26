@@ -1,11 +1,29 @@
 package pl.manager.apiary.model;
 
-public class Cost {
-	private String description;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	public Cost(String description) {
-		super();
-		this.description = description;
+@Entity
+@Table(name = "cost")
+public class Cost {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String description;
+	private int amount;
+	private double price;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDescription() {
@@ -14,6 +32,27 @@ public class Cost {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Cost [id=" + id + ", description=" + description + ", amount=" + amount + ", price=" + price + "]";
 	}
 
 }

@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * https://www.baeldung.com/spring-security-login
  * https://docs.spring.io/spring-security/site/docs/current/guides/html5/hellomvc-javaconfig.html
  * 
  * @author mzientek
