@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pl.manager.apiary.model.Cost;
@@ -15,6 +16,7 @@ public class CostDAOImpl implements CostDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(CostDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sf) {
@@ -38,7 +40,7 @@ public class CostDAOImpl implements CostDAO {
 	@Override
 	public List<Cost> listCosts() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Cost> costsList = session.createQuery("from Person").list();
+		List<Cost> costsList = session.createQuery("from cost").list();
 		for (Cost c : costsList) {
 			logger.info("Cost List::" + c);
 		}

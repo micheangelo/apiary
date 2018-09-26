@@ -2,9 +2,12 @@ package pl.manager.apiary.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import pl.manager.apiary.dao.CostDAO;
 import pl.manager.apiary.model.Cost;
 
+@Service
 public class CostServiceImpl implements CostService {
 
 	private CostDAO costDAO;
