@@ -84,11 +84,11 @@
 	<table class="tg">
 	<tr>
 		<th width="80">Cost ID</th>
-		<th width="120">Description</th>
-		<th width="120">Amount</th>
-		<th width="120">Price</th>
-		<th width="60">Edit</th>
-		<th width="60">Delete</th>
+		<th width="120"><spring:message code="costs.description" /></th>
+		<th width="120">Ilosc</th>
+		<th width="120">Cena</th>
+		<th width="60">Edytuj</th>
+		<th width="60">Usun</th>
 	</tr>
 	<c:forEach items="${listCosts}" var="cost">
 		<tr>
