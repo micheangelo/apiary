@@ -2,6 +2,8 @@ package pl.manager.apiary.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -38,9 +40,10 @@ public class CostDAOImpl implements CostDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<Cost> listCosts() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Cost> costsList = session.createQuery("from cost").list();
+		List<Cost> costsList = session.createQuery("from Cost").list();
 		for (Cost c : costsList) {
 			logger.info("Cost List::" + c);
 		}

@@ -26,7 +26,7 @@ public class HomeController {
 	
 	@Autowired(required=true)
 	@Qualifier(value="costService")
-	public void setPersonService(CostService cs){
+	public void setCostService(CostService cs){
 		this.costService = cs;
 	}
 
@@ -51,6 +51,6 @@ public class HomeController {
 	public String listCosts(Model model) {
 		model.addAttribute("cost", new Cost());
 		model.addAttribute("listCosts", this.costService.listCosts());
-		return "cost";
+		return "costs";
 	}
 }

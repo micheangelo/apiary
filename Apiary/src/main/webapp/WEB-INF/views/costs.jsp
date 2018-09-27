@@ -19,7 +19,7 @@
 
 <c:url var="addAction" value="/cost/add" ></c:url>
 
-<form:form action="${addAction}" commandName="cost">
+<form:form action="${addAction}" modelAttribute="cost">
 <table>
 	<c:if test="${!empty cost.description}">
 	<tr>
@@ -93,7 +93,7 @@
 	<c:forEach items="${listCosts}" var="cost">
 		<tr>
 			<td>${cost.id}</td>
-			<td>${cost.descritpion}</td>
+			<td>${cost.description}</td>
 			<td>${cost.amount}</td>
 			<td>${cost.price}</td>
 			<td><a href="<c:url value='/edit/${cost.id}' />" >Edit</a></td>

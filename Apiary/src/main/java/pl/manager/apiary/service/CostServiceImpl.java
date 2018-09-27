@@ -2,6 +2,7 @@ package pl.manager.apiary.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.manager.apiary.dao.CostDAO;
@@ -10,6 +11,7 @@ import pl.manager.apiary.model.Cost;
 @Service
 public class CostServiceImpl implements CostService {
 
+	@Autowired
 	private CostDAO costDAO;
 
 	public void setCostDAO(CostDAO costDAO) {
