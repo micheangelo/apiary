@@ -44,7 +44,7 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>pl.manager.apiary.model.Cost</beans:value>
+				<beans:value>pl.manager.apiary.model.Transaction</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -56,14 +56,14 @@
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean id="costDAO"
-		class="pl.manager.apiary.dao.CostDAOImpl">
+	<beans:bean id="transactionDAO"
+		class="pl.manager.apiary.dao.TransactionDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="costService"
-		class="pl.manager.apiary.service.CostServiceImpl">
-		<beans:property name="costDAO" ref="costDAO"></beans:property>
+	<beans:bean id="transactionService"
+		class="pl.manager.apiary.service.TransactionServiceImpl">
+		<beans:property name="transactionDAO" ref="transactionDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"

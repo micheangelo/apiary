@@ -1,5 +1,7 @@
 package pl.manager.apiary.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,15 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cost")
-public class Cost {
+@Table(name = "transaction")
+public class Transaction {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description;
-	private int amount;
+	private double quantity;
 	private double price;
+	private String transactionType;
+	private Date transactionDate;
+
+	public String getTransactionType() {
+		return transactionType;
+	}
+
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
 
 	public int getId() {
 		return id;
@@ -34,12 +54,12 @@ public class Cost {
 		this.description = description;
 	}
 
-	public int getAmount() {
-		return amount;
+	public double getQuantity() {
+		return quantity;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
 	}
 
 	public double getPrice() {
@@ -52,7 +72,7 @@ public class Cost {
 
 	@Override
 	public String toString() {
-		return "Cost [id=" + id + ", description=" + description + ", amount=" + amount + ", price=" + price + "]";
+		return "Transaction [id=" + id + ", description=" + description + ", amount=" + quantity + ", price=" + price + "]";
 	}
 
 }
