@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -49,5 +50,13 @@ public class HomeController {
 		model.addAttribute("transaction", new Transaction());
 		model.addAttribute("listTransactions", this.transactionService.listTransactions());
 		return "transactions";
+	}
+	
+	@RequestMapping(value = "/transaction/add", method = RequestMethod.POST)
+	public String addTransaction(@ModelAttribute("transaction")Transaction t) {
+		this.transactionService.addTransaction(t);
+		
+		return "redirect:/transactions";
+		
 	}
 }
