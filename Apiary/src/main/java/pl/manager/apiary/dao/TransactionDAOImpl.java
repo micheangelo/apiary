@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import pl.manager.apiary.model.Transaction;
 
 @Repository
+@Transactional
 public class TransactionDAOImpl implements TransactionDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransactionDAOImpl.class);

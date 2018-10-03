@@ -2,4 +2,5 @@
 *.jar
 *.prefs
 .project
+pom.properties
 /target/

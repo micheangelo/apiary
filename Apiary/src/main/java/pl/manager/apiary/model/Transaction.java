@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "transaction")
 public class Transaction {
@@ -20,6 +22,7 @@ public class Transaction {
 	private double quantity;
 	private double price;
 	private String transactionType;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date transactionDate;
 
 	public String getTransactionType() {
