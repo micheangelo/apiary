@@ -89,11 +89,6 @@
 				<td><form:label path="transactionType">
 						<spring:message code="transaction.type" />
 					</form:label></td>
-				<!-- <td><select name="transactionType" >
-						<c:forEach items="${listTransactionTypes}" var="transactionType">
-							<option value="${transactionType.symbol}">${transactionType.name}</option>
-						</c:forEach>
-				</select></td> -->
 				<td><form:select path="transactionType">
 					 <form:option value="" label="...." />
                      <form:options items="${listTransactionTypes}" itemValue="symbol" itemLabel="name" />						
