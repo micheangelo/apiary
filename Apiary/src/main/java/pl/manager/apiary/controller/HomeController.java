@@ -1,7 +1,5 @@
 package pl.manager.apiary.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Transaction;
+import pl.manager.apiary.model.TransactionType;
 import pl.manager.apiary.service.TransactionService;
+import pl.manager.apiary.service.TransactionTypeService;
 
 /**
  * Handles requests for the application home page.
@@ -19,12 +19,19 @@ import pl.manager.apiary.service.TransactionService;
 @Controller
 public class HomeController {
 	private TransactionService transactionService;
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private TransactionTypeService transactionTypeService;
+	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired(required = true)
 	@Qualifier(value = "transactionService")
 	public void setTransactionService(TransactionService cs) {
 		this.transactionService = cs;
+	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "transactionTypeService")
+	public void setTransactionTypeService(TransactionTypeService typeService) {
+		this.transactionTypeService = typeService;
 	}
 
 	/**
@@ -49,14 +56,17 @@ public class HomeController {
 	public String listTransactions(Model model) {
 		model.addAttribute("transaction", new Transaction());
 		model.addAttribute("listTransactions", this.transactionService.listTransactions());
+		
+		//transaction types
+		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transactions";
 	}
 	
 	@RequestMapping(value = "/transaction/add", method = RequestMethod.POST)
-	public String addTransaction(@ModelAttribute("transaction")Transaction t) {
+	public String addTransaction(@ModelAttribute("transaction")Transaction t) {		
 		this.transactionService.addTransaction(t);
 		
-		return "redirect:/transactions";
+		return "redirect:/";
 		
 	}
 }

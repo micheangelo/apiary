@@ -40,6 +40,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 		logger.info("Transaction updated successfully, transaction details=" + t);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Transaction> listTransactions() {

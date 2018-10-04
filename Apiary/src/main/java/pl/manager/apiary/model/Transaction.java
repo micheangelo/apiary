@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Transaction {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String description;
 	private double quantity;
