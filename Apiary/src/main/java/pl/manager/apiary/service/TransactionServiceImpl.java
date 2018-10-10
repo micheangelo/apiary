@@ -35,12 +35,12 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public Transaction getTransactionById(int id) {
-		return this.getTransactionById(id);
+		return this.transactionDAO.getTransactions(id);
 	}
 
 	@Override
-	public void removeTransaction(int id) {
-		this.removeTransaction(id);
+	public void removeTransaction(int id) {	
+		this.transactionDAO.deleteTransaction(id);
 	}
 
 }

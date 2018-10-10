@@ -50,11 +50,8 @@
 </style>
 </head>
 <body>
-	<h1>
-		<spring:message code="transaction.add" />
-	</h1>
-
-	<c:url var="addAction" value="/transaction/add"></c:url>
+	
+	<!--<c:url var="addAction" value="/transaction/add"></c:url>
 
 	<form:form action="${addAction}" modelAttribute="transaction">
 		<table>
@@ -109,7 +106,7 @@
 			</tr>
 		</table>
 	</form:form>
-	<br>
+	<br>-->
 	<h3>
 		<spring:message code="transaction.list" />
 	</h3>
@@ -133,13 +130,17 @@
 					<td>${transaction.price}</td>
 					<td>${transaction.transactionType}</td>
 					<td>${transaction.transactionDate}</td>
-					<td><a href="<c:url value='/edit/${transaction.id}' />"><spring:message
+					<td><a href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
 								code="global.edit" /></a></td>
-					<td><a href="<c:url value='/remove/${transaction.id}' />"><spring:message
+					<td><a href="<c:url value='transaction/remove/${transaction.id}' />"><spring:message
 								code="global.delete" /></a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
+	<br />
+	<form:form action="${addAction}" modelAttribute="transaction">
+		<input type="submit" name="addTransaction" value="<spring:message code="global.add"/>" />
+	</form:form>
 </body>
 </html>
