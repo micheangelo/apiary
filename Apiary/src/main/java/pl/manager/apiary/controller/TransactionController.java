@@ -74,13 +74,13 @@ public class TransactionController {
 		return "transaction";
 	}
 	
-	@RequestMapping(value = "transaction/save")
+	@RequestMapping({"transaction/save", "transaction/edit/save"})
 	public String saveTransaction(@ModelAttribute("transaction") Transaction t) {
 		if(t.getId() > 0)
 			this.transactionService.updateTransaction(t);
 		else
 			this.transactionService.addTransaction(t);
-		return "transactions";
+		return "redirect:/";
 	}
 	
 	
