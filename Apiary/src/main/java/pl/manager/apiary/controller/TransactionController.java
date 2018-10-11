@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Transaction;
-import pl.manager.apiary.service.TransactionService;
-import pl.manager.apiary.service.TransactionTypeService;
+import pl.manager.apiary.service.transaction.TransactionService;
+import pl.manager.apiary.service.transaction.type.TransactionTypeService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 /**
