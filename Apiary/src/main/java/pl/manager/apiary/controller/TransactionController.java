@@ -15,7 +15,7 @@ import pl.manager.apiary.service.TransactionTypeService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 /**
- * Handles requests for the application home page.
+ * Transaction controller
  */
 @Controller
 public class TransactionController {
@@ -43,13 +43,6 @@ public class TransactionController {
 		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transactions";
 	}
-
-	/*@RequestMapping(value = "/transaction/add", method = RequestMethod.POST)
-	public String addTransaction(@ModelAttribute("transaction") Transaction t) {
-		//this.transactionService.addTransaction(t);
-
-		return "redirect:/";
-	}*/
 	
 	@RequestMapping(value = "transaction/add")
 	public String addTransaction(Model model) {	
