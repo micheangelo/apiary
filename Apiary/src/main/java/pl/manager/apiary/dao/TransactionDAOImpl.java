@@ -64,9 +64,8 @@ public class TransactionDAOImpl implements TransactionDAO {
 	public void deleteTransaction(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction t = (Transaction) session.load(Transaction.class, new Integer(id));
-		if (null != t) {
+		if (null != t) 
 			session.delete(t);
-		}
 		logger.info("Transaction deleted successfully, transaction details=" + t);
 	}
 

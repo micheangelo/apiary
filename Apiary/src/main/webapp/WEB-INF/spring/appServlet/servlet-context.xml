@@ -63,7 +63,7 @@
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="transactionService"
-		class="pl.manager.apiary.service.TransactionServiceImpl">
+		class="pl.manager.apiary.service.transaction.TransactionServiceImpl">
 		<beans:property name="transactionDAO" ref="transactionDAO"></beans:property>
 	</beans:bean>
 	
@@ -73,8 +73,16 @@
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="transactionTypeService"
-		class="pl.manager.apiary.service.TransactionTypeServiceImpl">
+		class="pl.manager.apiary.service.transaction.type.TransactionTypeServiceImpl">
 		<beans:property name="transactionTypeDAO" ref="transactionTypeDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="hiveDAO" class="pl.manager.apiary.dao.HiveDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory">
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="hiveService" class="pl.manager.apiary.service.hive.HiveServiceImpl">
+		<beans:property name="hiveDAO" ref="hiveDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"

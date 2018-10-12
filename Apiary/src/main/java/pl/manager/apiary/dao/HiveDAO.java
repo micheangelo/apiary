@@ -1,13 +1,13 @@
-package pl.manager.apiary.service.hive;
+package pl.manager.apiary.dao;
 
 import java.util.List;
 
 import pl.manager.apiary.model.Hive;
 
-public interface HiveService {
+public interface HiveDAO {
 	public void addHive(Hive h);
 	public void updateHive(Hive h);
 	public List<Hive> listHives();
-	public Hive getHiveById(int id);
-	public void removeHive(int id);
+	public Hive getHive(int id);
+	public void deleteHive(int id);
 }
