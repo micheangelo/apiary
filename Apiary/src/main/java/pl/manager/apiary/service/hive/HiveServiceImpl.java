@@ -3,10 +3,12 @@ package pl.manager.apiary.service.hive;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pl.manager.apiary.dao.HiveDAO;
 import pl.manager.apiary.model.Hive;
 
+@Service
 public class HiveServiceImpl implements HiveService {
 
 	@Autowired

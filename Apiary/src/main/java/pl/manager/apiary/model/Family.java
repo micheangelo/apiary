@@ -2,9 +2,12 @@ package pl.manager.apiary.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +18,14 @@ public class Family {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String race;
+	@Column(name = "queen_origin")
 	private String queenOrigin;
+	@Column(name = "queen_birth_year")
 	private int queenBirthYear;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "hive_id")
+	private Hive hive;
 
 	public int getId() {
 		return id;

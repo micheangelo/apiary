@@ -2,10 +2,10 @@ package pl.manager.apiary.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,12 +18,13 @@ public class Hive {
 	private int id;
 	private String identifier;
 	private String material;
+	@Column(name = "purchase_year")
 	private int purchaseYear;
+	@Column(name = "hive_type")
 	private String hiveType;
 	private String description;
 
-	@OneToOne
-	@JoinColumn(name = "hive_id")
+	@OneToOne(mappedBy = "hive", fetch = FetchType.LAZY, optional = false)
 	private Family family;
 
 	public Family getFamily() {

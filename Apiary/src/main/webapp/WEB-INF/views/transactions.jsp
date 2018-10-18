@@ -9,6 +9,9 @@
 %>
 <html>
 <head>
+<link href="<c:url value="/resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="transaction.title" /></title>
 <style type="text/css">
 .tg {
@@ -50,63 +53,8 @@
 </style>
 </head>
 <body>
-	
-	<!--<c:url var="addAction" value="/transaction/add"></c:url>
+	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
 
-	<form:form action="${addAction}" modelAttribute="transaction">
-		<table>
-			<c:if test="${!empty transaction.description}">
-				<tr>
-					<td><form:label path="id">
-							<spring:message code="transaction.id" />
-						</form:label></td>
-					<td><form:input path="id" readonly="true" size="8"
-							disabled="true" /> <form:hidden path="id" /></td>
-				</tr>
-			</c:if>
-			<tr>
-				<td><form:label path="description">
-						<spring:message code="transaction.description" />
-					</form:label></td>
-				<td><form:input path="description" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="quantity">
-						<spring:message code="transaction.quantity" />
-					</form:label></td>
-				<td><form:input path="quantity" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="price">
-						<spring:message code="transaction.price" />
-					</form:label></td>
-				<td><form:input path="price" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="transactionType">
-						<spring:message code="transaction.type" />
-					</form:label></td>
-				<td><form:select path="transactionType">
-					 <form:option value="" label="...." />
-                     <form:options items="${listTransactionTypes}" itemValue="symbol" itemLabel="name" />						
-				</form:select></td>
-			</tr>
-			<tr>
-				<td><form:label path="transactionDate">
-						<spring:message code="transaction.date" />
-					</form:label></td>
-				<td><form:input path="transactionDate" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><c:if test="${!empty transaction.description}">
-						<input type="submit" value="<spring:message code="global.edit"/>" />
-					</c:if> <c:if test="${empty transaction.description}">
-						<input type="submit" value="<spring:message code="global.add"/>" />
-					</c:if></td>
-			</tr>
-		</table>
-	</form:form>
-	<br>-->
 	<h3>
 		<spring:message code="transaction.list" />
 	</h3>
@@ -130,9 +78,11 @@
 					<td>${transaction.price}</td>
 					<td>${transaction.transactionType}</td>
 					<td>${transaction.transactionDate}</td>
-					<td><a href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
+					<td><a
+						href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
 								code="global.edit" /></a></td>
-					<td><a href="<c:url value='transaction/remove/${transaction.id}' />"><spring:message
+					<td><a
+						href="<c:url value='transaction/remove/${transaction.id}' />"><spring:message
 								code="global.delete" /></a></td>
 				</tr>
 			</c:forEach>
@@ -140,7 +90,8 @@
 	</c:if>
 	<br />
 	<form:form action="${addAction}" modelAttribute="transaction">
-		<input type="submit" name="addTransaction" value="<spring:message code="global.add"/>" />
+		<input type="submit" name="addTransaction"
+			value="<spring:message code="global.add"/>" />
 	</form:form>
 </body>
 </html>

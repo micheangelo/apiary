@@ -43,63 +43,37 @@ public class TransactionController {
 		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transactions";
 	}
-	
+
 	@RequestMapping(value = "transaction/add")
-	public String addTransaction(Model model) {	
+	public String addTransaction(Model model) {
 		Transaction t = new Transaction();
 		model.addAttribute("operation", ApiaryConst.ADD);
 		model.addAttribute("transaction", t);
-		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes()); 
+		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transaction";
 	}
-	
+
 	@RequestMapping(value = "transaction/remove/{id}")
 	public String removeTransaction(@PathVariable("id") int id) {
-		this.transactionService.removeTransaction(id);		
+		this.transactionService.removeTransaction(id);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping(value = "transaction/edit/{id}")
 	public String editTransaction(@PathVariable("id") int id, Model model) {
 		model.addAttribute("transaction", this.transactionService.getTransactionById(id));
 		model.addAttribute("operation", ApiaryConst.EDIT);
-		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes()); 
+		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transaction";
 	}
-	
-	@RequestMapping({"transaction/save", "transaction/edit/save"})
+
+	@RequestMapping(value = { "transaction/save", "transaction/edit/save" })
 	public String saveTransaction(@ModelAttribute("transaction") Transaction t) {
-		if(t.getId() > 0)
+		if (t.getId() > 0)
 			this.transactionService.updateTransaction(t);
 		else
 			this.transactionService.addTransaction(t);
 		return "redirect:/";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

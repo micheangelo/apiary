@@ -61,7 +61,10 @@
 				<th width="120"><spring:message code="hive.material" /></th>
 				<th width="120"><spring:message code="hive.purchaseYear" /></th>
 				<th width="120"><spring:message code="hive.hiveType" /></th>
-				<th width="120"><spring:message code="hive.description" /></th>				
+				<th width="120"><spring:message code="hive.description" /></th>
+				<th width="60"><spring:message code="hive.family" /></th>
+				<th width="60"><spring:message code="global.edit" /></th>
+				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
 			<c:forEach items="${listHives}" var="hive">
 				<tr>
@@ -71,6 +74,15 @@
 					<td>${hive.purchaseYear}</td>
 					<td>${hive.hiveType}</td>
 					<td>${hive.description}</td>
+					<c:choose>
+						<c:when test="${!empty hive.family}">
+							<td><a href="<c:url value='hive/family/${hive.family.id} }' />"><spring:message
+										code="global.show" /></a></td>
+						</c:when>
+						<c:otherwise>
+							<td />
+						</c:otherwise>
+					</c:choose>
 					<td><a href="<c:url value='hive/edit/${hive.id}' />"><spring:message
 								code="global.edit" /></a></td>
 					<td><a href="<c:url value='hive/remove/${hive.id}' />"><spring:message
@@ -81,7 +93,8 @@
 	</c:if>
 	<br />
 	<form:form action="${addAction}" modelAttribute="hive">
-		<input type="submit" name="addHive" value="<spring:message code="global.add"/>" />
+		<input type="submit" name="addHive"
+			value="<spring:message code="global.add"/>" />
 	</form:form>
 </body>
 </html>

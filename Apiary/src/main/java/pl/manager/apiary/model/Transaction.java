@@ -21,7 +21,9 @@ public class Transaction {
 	private String description;
 	private double quantity;
 	private double price;
+	@Column(name = "transaction_type")
 	private String transactionType;
+	@Column(name = "transaction_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date transactionDate;
 
@@ -75,7 +77,8 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "Transaction [id=" + id + ", description=" + description + ", amount=" + quantity + ", price=" + price + "]";
+		return "Transaction [id=" + id + ", description=" + description + ", amount=" + quantity + ", price=" + price
+				+ "]";
 	}
 
 }

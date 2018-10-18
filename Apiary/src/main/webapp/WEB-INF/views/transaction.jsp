@@ -4,8 +4,8 @@
 <%@ page session="false"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
-	response.setCharacterEncoding("UTF-8");
-	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("iso-8859-2");
+	request.setCharacterEncoding("iso-8859-2");
 %>
 <html>
 <head>
