@@ -50,6 +50,7 @@
 </style>
 </head>
 <body>
+	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<spring:message code="hive.list" />
 	</h3>

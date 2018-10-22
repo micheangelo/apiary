@@ -46,6 +46,8 @@
 			<beans:list>
 				<beans:value>pl.manager.apiary.model.Transaction</beans:value>
 				<beans:value>pl.manager.apiary.model.TransactionType</beans:value>
+				<beans:value>pl.manager.apiary.model.Hive</beans:value>
+				<beans:value>pl.manager.apiary.model.Family</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -64,9 +66,10 @@
 	</beans:bean>
 	<beans:bean id="transactionService"
 		class="pl.manager.apiary.service.transaction.TransactionServiceImpl">
-		<beans:property name="transactionDAO" ref="transactionDAO"></beans:property>
+		<beans:property name="transactionDAO"
+			ref="transactionDAO"></beans:property>
 	</beans:bean>
-	
+
 	<beans:bean id="transactionTypeDAO"
 		class="pl.manager.apiary.dao.TransactionTypeDAOImpl">
 		<beans:property name="sessionFactory"
@@ -74,15 +77,31 @@
 	</beans:bean>
 	<beans:bean id="transactionTypeService"
 		class="pl.manager.apiary.service.transaction.type.TransactionTypeServiceImpl">
-		<beans:property name="transactionTypeDAO" ref="transactionTypeDAO"></beans:property>
+		<beans:property name="transactionTypeDAO"
+			ref="transactionTypeDAO"></beans:property>
 	</beans:bean>
-	
-	<beans:bean id="hiveDAO" class="pl.manager.apiary.dao.HiveDAOImpl">
-		<beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory">
+
+
+	<beans:bean id="hiveDAO"
+	class="pl.manager.apiary.dao.HiveDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory">
 		</beans:property>
 	</beans:bean>
-	<beans:bean id="hiveService" class="pl.manager.apiary.service.hive.HiveServiceImpl">
+	<beans:bean id="hiveService"
+		class="pl.manager.apiary.service.hive.HiveServiceImpl">
 		<beans:property name="hiveDAO" ref="hiveDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="familyDAO"
+	class="pl.manager.apiary.dao.FamilyDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory">
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="familyService"
+		class="pl.manager.apiary.service.family.FamilyServiceImpl">
+		<beans:property name="familyDAO" ref="familyDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"
@@ -101,4 +120,5 @@
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
+
 </beans:beans>

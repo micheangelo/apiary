@@ -58,7 +58,7 @@ public class HiveDAOImpl implements HiveDAO {
 	@Override
 	public void deleteHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Hive h = session.load(Hive.class, new Integer(id));
+		Hive h = getHive(id);
 		if(h != null)
 			session.delete(h);
 

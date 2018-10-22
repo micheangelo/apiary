@@ -44,7 +44,7 @@ public class TransactionController {
 		return "transactions";
 	}
 
-	@RequestMapping(value = "transaction/add")
+	@RequestMapping(value = "transaction/add", method=RequestMethod.POST)
 	public String addTransaction(Model model) {
 		Transaction t = new Transaction();
 		model.addAttribute("operation", ApiaryConst.ADD);
