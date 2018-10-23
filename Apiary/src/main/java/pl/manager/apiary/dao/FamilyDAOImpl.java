@@ -2,12 +2,17 @@ package pl.manager.apiary.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import pl.manager.apiary.model.Family;
 
+@Repository
+@Transactional
 public class FamilyDAOImpl implements FamilyDAO {
 
 	@Autowired
@@ -32,7 +37,7 @@ public class FamilyDAOImpl implements FamilyDAO {
 	@Override
 	public List<Family> listFamilies() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Family> families = session.createQuery("from Families", Family.class).list();
+		List<Family> families = session.createQuery("from Family", Family.class).list();
 		return families;
 	}
 

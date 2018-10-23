@@ -9,6 +9,9 @@
 %>
 <html>
 <head>
+<link href="<c:url value="/resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="hive.title" /></title>
 <style type="text/css">
 .tg {

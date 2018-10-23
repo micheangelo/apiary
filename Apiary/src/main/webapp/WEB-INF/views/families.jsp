@@ -9,6 +9,9 @@
 %>
 <html>
 <head>
+<link href="<c:url value="/resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="family.title" /></title>
 <style type="text/css">
 .tg {
@@ -60,7 +63,9 @@
 				<th width="80"><spring:message code="family.id" /></th>
 				<th width="80"><spring:message code="family.race" /></th>
 				<th width="120"><spring:message code="family.queenOrigin" /></th>
-				<th width="120"><spring:message code="family.queenBirthYear" /></th>				
+				<th width="120"><spring:message code="family.queenBirthYear" /></th>		
+				<th width="60"><spring:message code="global.edit" /></th>
+				<th width="60"><spring:message code="global.delete" /></th>		
 			</tr>
 			<c:forEach items="${listFamilies}" var="family">
 				<tr>
