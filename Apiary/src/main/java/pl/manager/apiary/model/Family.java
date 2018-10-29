@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "family")
 public class Family {
@@ -20,12 +22,21 @@ public class Family {
 	private String race;
 	@Column(name = "queen_origin")
 	private String queenOrigin;
+	@DateTimeFormat(pattern = "yyyy")
 	@Column(name = "queen_birth_year")
 	private int queenBirthYear;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne//(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hive_id")
 	private Hive hive;
+
+	public Hive getHive() {
+		return hive;
+	}
+
+	public void setHive(Hive hive) {
+		this.hive = hive;
+	}
 
 	public int getId() {
 		return id;

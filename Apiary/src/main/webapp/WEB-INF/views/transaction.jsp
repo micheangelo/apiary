@@ -9,10 +9,13 @@
 %>
 <html>
 <head>
+<link href="<c:url value="../resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="../resources/js/ddmenu.js" />"></script>
 <title><spring:message code="transaction.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink" href="../resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<spring:message code="transaction.add" />
 	</h3>

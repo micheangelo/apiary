@@ -9,24 +9,18 @@
 %>
 <html>
 <head>
+<link href="<c:url value="../resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="../resources/js/ddmenu.js" />"></script>
 <title><spring:message code="hive.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink" href="../resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<spring:message code="hive.add" />
 	</h3>
 	<form:form action="save" modelAttribute="hive">
 		<table>
-			<c:if test="${!empty hive.description}">
-				<tr>
-					<td><form:label path="id">
-							<spring:message code="hive.id" />
-						</form:label></td>
-					<td><form:input path="id" readonly="true" size="8"
-							disabled="true" /> <form:hidden path="id" /></td>
-				</tr>
-			</c:if>
 			<tr>
 				<td><form:label path="identifier">
 						<spring:message code="hive.identifier" />

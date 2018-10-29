@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "hive")
 public class Hive {
@@ -18,6 +20,7 @@ public class Hive {
 	private int id;
 	private String identifier;
 	private String material;
+	@DateTimeFormat(pattern = "yyyy")
 	@Column(name = "purchase_year")
 	private int purchaseYear;
 	@Column(name = "hive_type")

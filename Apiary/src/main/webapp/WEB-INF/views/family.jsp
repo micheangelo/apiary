@@ -9,24 +9,18 @@
 %>
 <html>
 <head>
+<link href="<c:url value="../resources/css/ddmenu.css" />"
+	rel="stylesheet">
+<script src="<c:url value="../resources/js/ddmenu.js" />"></script>
 <title><spring:message code="family.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink" href="../resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<spring:message code="family.add" />
 	</h3>
 	<form:form action="save" modelAttribute="family">
 		<table>
-			<c:if test="${!empty family.description}">
-				<tr>
-					<td><form:label path="id">
-							<spring:message code="family.id" />
-						</form:label></td>
-					<td><form:input path="id" readonly="true" size="8"
-							disabled="true" /> <form:hidden path="id" /></td>
-				</tr>
-			</c:if>
 			<tr>
 				<td><form:label path="race">
 						<spring:message code="family.race" />
@@ -45,21 +39,20 @@
 					</form:label></td>
 				<td><form:input path="queenBirthYear" /></td>
 			</tr>
-
 			<tr>
-				<td><form:label path="familyId">
-						<spring:message code="family.Id" />
+				<td><form:label path="hive">
+						<spring:message code="hive.id" />
 					</form:label></td>
-				<td><form:select path="transactionType">
-						<form:option value="" label="...." />
-						<form:options items="${listTransactionTypes}" itemValue="symbol"
-							itemLabel="name" />
+				<td><form:select path="hive.id">
+						<form:option value="-1" label="...." />
+						<form:options items="${listHives}" itemValue="hive.id"
+							itemLabel="hive.identifier" />
 					</form:select></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty family.description}">
+				<td colspan="2"><c:if test="${!empty family.id}">
 						<input type="submit" value="<spring:message code="global.save"/>" />
-					</c:if> <c:if test="${empty family.description}">
+					</c:if> <c:if test="${empty family.id}">
 						<input type="submit" value="<spring:message code="global.add"/>" />
 					</c:if> <input type="button"
 					value="<spring:message code="global.cancel"/>"

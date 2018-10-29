@@ -82,7 +82,7 @@
 		</table>
 	</c:if>
 	<br />
-	<form:form action="${addAction}" modelAttribute="family">
+	<form:form action="family/add" modelAttribute="family">
 		<input type="submit" name="addFamily"
 			value="<spring:message code="global.add"/>" />
 	</form:form>

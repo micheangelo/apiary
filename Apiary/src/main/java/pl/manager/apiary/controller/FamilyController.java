@@ -11,17 +11,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Family;
 import pl.manager.apiary.service.family.FamilyService;
+import pl.manager.apiary.service.hive.HiveService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 @Controller
 public class FamilyController {
 
 	private FamilyService familyService;
+	private HiveService hiveService;
 
 	@Autowired
 	@Qualifier(value = "familyService")
 	public void setFamilyService(FamilyService familyService) {
 		this.familyService = familyService;
+	}
+	
+	@Autowired
+	@Qualifier(value = "hiveService")
+	public void setHiveService(HiveService hiveService) {
+		this.hiveService = hiveService;
 	}
 
 	@RequestMapping(value = "families", method = RequestMethod.GET)
@@ -35,7 +43,8 @@ public class FamilyController {
 		Family f = new Family();
 		model.addAttribute("operation", ApiaryConst.ADD);
 		model.addAttribute("family", f);
-		return "families";
+		//model.addAttribute("listHives", this.hiveService.listHives());
+		return "family";
 	}
 
 	@RequestMapping(value = "family/edit/{id}")
