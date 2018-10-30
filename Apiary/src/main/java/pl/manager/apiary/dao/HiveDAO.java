@@ -14,4 +14,6 @@ public interface HiveDAO {
 	public Hive getHive(int id);
 
 	public void deleteHive(int id);
+	
+	public List<Hive> listFreeHives();
 }

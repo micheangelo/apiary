@@ -32,6 +32,11 @@ public class HiveServiceImpl implements HiveService {
 	public List<Hive> listHives() {
 		return this.hiveDAO.listHives();
 	}
+	
+	@Override
+	public List<Hive> listFreeHives() {
+		return this.hiveDAO.listFreeHives();
+	}
 
 	@Override
 	public Hive getHiveById(int id) {

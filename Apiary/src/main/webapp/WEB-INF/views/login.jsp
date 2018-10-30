@@ -30,7 +30,7 @@
 					</div>
 				</c:if>
 				<c:if test="${param.logout != null}">
-					<div">
+					<div>
 						<p>Wylogowano z systemu</p>
 					</div>
 				</c:if>

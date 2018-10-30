@@ -43,7 +43,7 @@ public class FamilyController {
 		Family f = new Family();
 		model.addAttribute("operation", ApiaryConst.ADD);
 		model.addAttribute("family", f);
-		//model.addAttribute("listHives", this.hiveService.listHives());
+		model.addAttribute("listHives", this.hiveService.listFreeHives());
 		return "family";
 	}
 
@@ -56,17 +56,19 @@ public class FamilyController {
 
 	@RequestMapping(value = { "family/save", "family/edit/save" })
 	public String saveFamily(@ModelAttribute("family") Family f) {
+		if(f.getHive() == null || f.getHive().getId() == -1)
+			f.setHive(null);
 		if (f.getId() > 0)
 			this.familyService.updateFamily(f);
 		else
 			this.familyService.addFamily(f);
-		return "redirect:/";
+		return "redirect:/families";
 	}
 
 	@RequestMapping(value = "family/remove/{id}")
 	public String removeFamily(@PathVariable("id") int id) {
 		this.familyService.removeFamily(id);
-		return "redirect:/";
+		return "redirect:/families";
 	}
 
 }

@@ -2,6 +2,12 @@ package pl.manager.apiary.dao;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -11,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pl.manager.apiary.model.Family;
+import pl.manager.apiary.model.Family_;
 import pl.manager.apiary.model.Hive;
 
 @Repository
@@ -61,7 +69,27 @@ public class HiveDAOImpl implements HiveDAO {
 		Hive h = getHive(id);
 		if(h != null)
 			session.delete(h);
+	}
+	
+	@Override
+	public List<Hive> listFreeHives() {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Hive> query = cb.createQuery(Hive.class);
+		Root<Hive> root = query.from(Hive.class);
+		query.select(root);
+		
+		Subquery<Family> subquery = query.subquery(Family.class);
+		Root<Family> familyRoot = subquery.from(Family.class);
+		subquery.select(familyRoot);
 
+		Predicate p = cb.equal(familyRoot.get(Family_.hive), root);
+		subquery.where(p);
+		query.where(cb.not(cb.exists(subquery)));
+		
+		TypedQuery<Hive> hiveQuery = session.createQuery(query);
+		
+		return hiveQuery.getResultList();
 	}
 
 }
