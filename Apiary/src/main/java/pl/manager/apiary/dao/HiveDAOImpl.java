@@ -61,6 +61,12 @@ public class HiveDAOImpl implements HiveDAO {
 	public Hive getHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Hive h = session.load(Hive.class, new Integer(id));
+		Family f = null;
+		if(h.getFamily() != null)
+			f = session.load(Family.class, new Integer(h.getFamily().getId()));
+		else
+			f = new Family();
+		h.setFamily(f);
 		return h;
 	}
 
