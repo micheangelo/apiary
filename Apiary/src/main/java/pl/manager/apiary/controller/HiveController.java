@@ -14,7 +14,7 @@ import pl.manager.apiary.service.hive.HiveService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 /**
- * Hive and family controller
+ * Hive controller
  */
 @Controller
 public class HiveController {
@@ -37,7 +37,7 @@ public class HiveController {
 		Hive h = new Hive();
 		model.addAttribute("operation", ApiaryConst.ADD);
 		model.addAttribute("hive", h);
-		return "hives";
+		return "hive";
 	}
 
 	@RequestMapping(value = "hive/edit/{id}")
@@ -53,13 +53,13 @@ public class HiveController {
 			hiveService.updateHive(h);
 		else
 			hiveService.addHive(h);
-		return "redirect:/";
+		return "redirect:/hives";
 	}
 	
 	@RequestMapping(value= {"hive/remove/{id}"})
 	public String removeHive(@PathVariable("id") int id) {
-		hiveService.removeHive(id);
-		return "redirect:/";
+		this.hiveService.removeHive(id);
+		return "redirect:/hives";
 	}
 
 }

@@ -50,7 +50,7 @@ public class HiveServiceImpl implements HiveService {
 
 	@Override
 	public void removeHive(int id) {
-		this.removeHive(id);
+		this.hiveDAO.deleteHive(id);
 	}
 
 }

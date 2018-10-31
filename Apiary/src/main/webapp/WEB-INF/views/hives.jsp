@@ -94,7 +94,7 @@
 		</table>
 	</c:if>
 	<br />
-	<form:form action="${addAction}" modelAttribute="hive">
+	<form:form action="hive/add" modelAttribute="hive">
 		<input type="submit" name="addHive"
 			value="<spring:message code="global.add"/>" />
 	</form:form>

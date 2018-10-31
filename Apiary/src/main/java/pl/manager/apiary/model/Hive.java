@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -27,7 +29,7 @@ public class Hive {
 	private String hiveType;
 	private String description;
 
-	@OneToOne(mappedBy = "hive", fetch = FetchType.LAZY, optional = false)
+	@OneToOne(mappedBy = "hive", fetch = FetchType.LAZY, optional = true)
 	private Family family;
 
 	public Family getFamily() {

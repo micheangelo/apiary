@@ -9,13 +9,13 @@
 %>
 <html>
 <head>
-<link href="<c:url value="../resources/css/ddmenu.css" />"
+<link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
-<script src="<c:url value="../resources/js/ddmenu.js" />"></script>
+<script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="hive.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="../resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink" href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<c:choose>
 			<c:when test="${operation == 'add'}">
