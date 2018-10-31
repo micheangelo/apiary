@@ -17,10 +17,20 @@
 <body>
 	<a id="ddmenuLink" href="../resources/ddmenu-source.html">Menu</a>
 	<h3>
-		<spring:message code="hive.add" />
+		<c:choose>
+			<c:when test="${operation == 'add'}">
+				<spring:message code="hive.add" />
+			</c:when>
+			<c:otherwise>
+				<spring:message code="hive.edit" />
+			</c:otherwise>
+		</c:choose>
 	</h3>
 	<form:form action="save" modelAttribute="hive">
 		<table>
+			<c:if test="${hive.id gt 0}">
+				<form:hidden path="id" />
+			</c:if>
 			<tr>
 				<td><form:label path="identifier">
 						<spring:message code="hive.identifier" />

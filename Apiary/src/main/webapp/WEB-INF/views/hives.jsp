@@ -60,7 +60,6 @@
 	<c:if test="${!empty listHives}">
 		<table class="tg">
 			<tr>
-				<th width="80"><spring:message code="hive.id" /></th>
 				<th width="80"><spring:message code="hive.identifier" /></th>
 				<th width="120"><spring:message code="hive.material" /></th>
 				<th width="120"><spring:message code="hive.purchaseYear" /></th>
@@ -72,7 +71,6 @@
 			</tr>
 			<c:forEach items="${listHives}" var="hive">
 				<tr>
-					<td>${hive.id}</td>
 					<td>${hive.identifier}</td>
 					<td>${hive.material}</td>
 					<td>${hive.purchaseYear}</td>

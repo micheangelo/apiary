@@ -11,20 +11,22 @@
 <title><spring:message code="transaction.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink"
+		href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
 	<h3>
-		<spring:message code="transaction.add" />
+		<c:choose>
+			<c:when test="${operation == 'add'}">
+				<spring:message code="transaction.add" />
+			</c:when>
+			<c:otherwise>
+				<spring:message code="transaction.edit" />
+			</c:otherwise>
+		</c:choose>
 	</h3>
 	<form:form action="save" modelAttribute="transaction">
 		<table>
-			<c:if test="${!empty transaction.description}">
-				<tr>
-					<td><form:label path="id">
-							<spring:message code="transaction.id" />
-						</form:label></td>
-					<td><form:input path="id" readonly="true" size="8"
-							disabled="true" /> <form:hidden path="id" /></td>
-				</tr>
+			<c:if test="${transaction.id gt 0}">
+				<form:hidden path="id" />
 			</c:if>
 			<tr>
 				<td><form:label path="description">

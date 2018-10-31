@@ -15,12 +15,23 @@
 <title><spring:message code="family.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink"
+		href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
 	<h3>
-		<spring:message code="family.add" />
+		<c:choose>
+			<c:when test="${operation == 'add'}">
+				<spring:message code="family.add" />
+			</c:when>
+			<c:otherwise>
+				<spring:message code="family.edit" />
+			</c:otherwise>
+		</c:choose>
 	</h3>
 	<form:form action="save" modelAttribute="family">
 		<table>
+			<c:if test="${family.id gt 0}">
+				<form:hidden path="id" />
+			</c:if>
 			<tr>
 				<td><form:label path="race">
 						<spring:message code="family.race" />
@@ -47,15 +58,7 @@
 						<form:option value="-1" label="Wybierz ul" />
 						<form:options items="${listHives}" itemValue="id"
 							itemLabel="identifier" />
-				</form:select></td>
-					<!--  <td>
-				   		<form:select path="hive.id">    
-							<option value="-1">Select a type</option>
-							<c:forEach items="${listHives}" var="hive">
-								<option value="${hive.id}">${hive.identifier}</option>
-							</c:forEach>
-						</form:select>
-					</td>-->
+					</form:select></td>				
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty family.id}">

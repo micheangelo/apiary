@@ -20,13 +20,14 @@ import org.springframework.stereotype.Repository;
 import pl.manager.apiary.model.Family;
 import pl.manager.apiary.model.Family_;
 import pl.manager.apiary.model.Hive;
+import pl.manager.apiary.model.Hive_;
 
 @Repository
 @Transactional
 public class HiveDAOImpl implements HiveDAO {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(TransactionDAOImpl.class);
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -67,10 +68,10 @@ public class HiveDAOImpl implements HiveDAO {
 	public void deleteHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Hive h = getHive(id);
-		if(h != null)
+		if (h != null)
 			session.delete(h);
 	}
-	
+
 	@Override
 	public List<Hive> listFreeHives() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -78,7 +79,7 @@ public class HiveDAOImpl implements HiveDAO {
 		CriteriaQuery<Hive> query = cb.createQuery(Hive.class);
 		Root<Hive> root = query.from(Hive.class);
 		query.select(root);
-		
+
 		Subquery<Family> subquery = query.subquery(Family.class);
 		Root<Family> familyRoot = subquery.from(Family.class);
 		subquery.select(familyRoot);
@@ -86,9 +87,31 @@ public class HiveDAOImpl implements HiveDAO {
 		Predicate p = cb.equal(familyRoot.get(Family_.hive), root);
 		subquery.where(p);
 		query.where(cb.not(cb.exists(subquery)));
-		
+
 		TypedQuery<Hive> hiveQuery = session.createQuery(query);
-		
+
+		return hiveQuery.getResultList();
+	}
+
+	@Override
+	public List<Hive> listFreeAndCurrentHives(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Hive> query = cb.createQuery(Hive.class);
+		Root<Hive> root = query.from(Hive.class);
+		query.select(root);
+
+		Subquery<Family> subquery = query.subquery(Family.class);
+		Root<Family> familyRoot = subquery.from(Family.class);
+		subquery.select(familyRoot);
+
+		Predicate p = cb.equal(familyRoot.get(Family_.hive), root);
+		subquery.where(p);
+
+		query.where(cb.or(cb.not(cb.exists(subquery)), cb.equal(root.get(Hive_.id), id)));
+
+		TypedQuery<Hive> hiveQuery = session.createQuery(query);
+
 		return hiveQuery.getResultList();
 	}
 

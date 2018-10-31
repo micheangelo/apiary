@@ -9,6 +9,7 @@ public interface HiveService {
 	public void updateHive(Hive h);
 	public List<Hive> listHives();
 	public List<Hive> listFreeHives();
+	public List<Hive> listFreeAndCurrentHives(int id);
 	public Hive getHiveById(int id);
 	public void removeHive(int id);
 }

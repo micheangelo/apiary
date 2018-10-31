@@ -60,24 +60,22 @@
 	</h3>
 	<c:if test="${!empty listTransactions}">
 		<table class="tg">
-			<tr>
-				<th width="80"><spring:message code="transaction.id" /></th>
+			<tr>				
+				<th width="120"><spring:message code="transaction.date" /></th>
 				<th width="120"><spring:message code="transaction.description" /></th>
 				<th width="120"><spring:message code="transaction.quantity" /></th>
 				<th width="120"><spring:message code="transaction.price" /></th>
-				<th width="120"><spring:message code="transaction.type" /></th>
-				<th width="120"><spring:message code="transaction.date" /></th>
+				<th width="120"><spring:message code="transaction.type" /></th>				
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
 			<c:forEach items="${listTransactions}" var="transaction">
 				<tr>
-					<td>${transaction.id}</td>
+					<td>${transaction.transactionDate}</td>
 					<td>${transaction.description}</td>
 					<td>${transaction.quantity}</td>
 					<td>${transaction.price}</td>
 					<td>${transaction.transactionType}</td>
-					<td>${transaction.transactionDate}</td>
 					<td><a
 						href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
 								code="global.edit" /></a></td>

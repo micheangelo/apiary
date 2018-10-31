@@ -49,8 +49,13 @@ public class FamilyController {
 
 	@RequestMapping(value = "family/edit/{id}")
 	public String editFamily(@PathVariable("id") int id, Model model) {
-		model.addAttribute("family", familyService.getFamilyById(id));
+		Family f = familyService.getFamilyById(id);
+		model.addAttribute("family", f);
 		model.addAttribute("operation", ApiaryConst.EDIT);
+		int hiveId = 0;
+		if(f.getHive() != null)
+			hiveId = f.getHive().getId();
+		model.addAttribute("listHives", this.hiveService.listFreeAndCurrentHives(hiveId));
 		return "family";
 	}
 
