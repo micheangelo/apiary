@@ -5,7 +5,7 @@ CREATE TABLE transaction(
  description VARCHAR(1000),
  quantity DECIMAL(15,2),
  price DECIMAL(15,2),
- transaction_type CHAR(1),
+ transaction_type INT,
  transaction_date DATETIME
 )
 /
