@@ -2,11 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%
-	response.setCharacterEncoding("iso-8859-2");
-	request.setCharacterEncoding("iso-8859-2");
-%>
+
 <html>
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
@@ -15,7 +11,8 @@
 <title><spring:message code="hive.edit.title" /></title>
 </head>
 <body>
-	<a id="ddmenuLink" href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
+	<a id="ddmenuLink"
+		href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
 	<h3>
 		<c:choose>
 			<c:when test="${operation == 'add'}">
@@ -49,7 +46,6 @@
 					</form:label></td>
 				<td><form:input path="purchaseYear" /></td>
 			</tr>
-
 			<tr>
 				<td><form:label path="hiveType">
 						<spring:message code="hive.hiveType" />
@@ -57,11 +53,20 @@
 				<td><form:input path="hiveType" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty hive.description}">
-						<input type="submit" value="<spring:message code="global.save"/>" />
-					</c:if> <c:if test="${empty hive.description}">
-						<input type="submit" value="<spring:message code="global.add"/>" />
-					</c:if> <input type="button"
+				<td><form:label path="description">
+						<spring:message code="hive.description" />
+					</form:label></td>
+				<td><form:input path="description" /></td>
+			</tr>
+			<tr>
+				<td><c:choose>
+						<c:when test="${hive.id gt 0}">
+							<input type="submit" value="<spring:message code="global.save"/>" />
+						</c:when>
+						<c:otherwise>
+							<input type="submit" value="<spring:message code="global.add"/>" />
+						</c:otherwise>
+					</c:choose> <input type="button"
 					value="<spring:message code="global.cancel"/>"
 					onclick="history.back()" /></td>
 			</tr>

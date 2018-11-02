@@ -78,7 +78,7 @@
 					<td>${hive.description}</td>
 					<c:choose>
 						<c:when test="${!empty hive.family}">
-							<td><a href="<c:url value='hive/family/${hive.family.id} }' />"><spring:message
+							<td><a href="<c:url value='family/edit/${hive.family.id}' />"><spring:message
 										code="global.show" /></a></td>
 						</c:when>
 						<c:otherwise>

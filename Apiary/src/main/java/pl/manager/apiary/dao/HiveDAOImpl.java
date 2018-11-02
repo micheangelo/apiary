@@ -2,6 +2,7 @@ package pl.manager.apiary.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -60,14 +61,13 @@ public class HiveDAOImpl implements HiveDAO {
 	@Override
 	public Hive getHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Hive h = session.load(Hive.class, new Integer(id));
-		Family f = null;
-		if(h.getFamily() != null)
-			f = session.load(Family.class, new Integer(h.getFamily().getId()));
-		else
-			f = new Family();
-		h.setFamily(f);
-		return h;
+		//join fetch to load families
+		Query q = session.createQuery(
+				"SELECT h FROM Hive h " +
+				" LEFT JOIN FETCH " +
+				" h.family f WHERE h.id=:id"); 
+		q.setParameter("id", id);
+		return (Hive) q.getSingleResult();
 	}
 
 	@Override

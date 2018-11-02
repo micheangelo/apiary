@@ -10,9 +10,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: head(title=~{::title},links=~{})">
 <title>Please Login</title>
+<style>
+.outer-div
+{
+     padding: 30px;
+}
+.inner-div
+{
+     margin: auto;
+     width: 100px;
+     height: 100px;  
+}
+</style>
 </head>
 <body th:include="layout :: body" th:with="content=~{::content}">
-	<div th:fragment="content">
+	<div class="outer-div">
+	<div class="inner-div" th:fragment="content" th:align="center">
 		<form name="f" th:action="@{/login}" method="post">
 			<fieldset>
 				<legend>Zaloguj się</legend>
@@ -36,6 +49,7 @@
 				</c:if>
 			</fieldset>
 		</form>
+	</div>
 	</div>
 </body>
 </html>

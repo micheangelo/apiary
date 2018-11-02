@@ -2,6 +2,7 @@ package pl.manager.apiary.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Family {
 	@Column(name = "queen_birth_year")
 	private int queenBirthYear;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hive_id")
 	private Hive hive;
 
