@@ -52,7 +52,7 @@
 					</form:label></td>
 				<td><form:select path="transactionType">
 						<form:option value="" label="...." />
-						<form:options items="${listTransactionTypes}" itemValue="symbol"
+						<form:options items="${listTransactionTypes}" itemValue="id"
 							itemLabel="name" />
 					</form:select></td>
 			</tr>

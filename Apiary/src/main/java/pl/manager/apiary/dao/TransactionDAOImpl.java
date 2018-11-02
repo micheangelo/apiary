@@ -45,7 +45,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Transactional
 	public List<Transaction> listTransactions() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Transaction> transactionsList = session.createQuery("from Transaction").list();
+		List<Transaction> transactionsList = session.createQuery("SELECT t FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
 		for (Transaction c : transactionsList) {
 			logger.info("Transaction List::" + c);
 		}
