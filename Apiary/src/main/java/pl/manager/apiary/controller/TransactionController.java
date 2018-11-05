@@ -34,7 +34,7 @@ public class TransactionController {
 		this.transactionTypeService = typeService;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
 	public String listTransactions(Model model) {
 		model.addAttribute("transaction", new Transaction());
 		model.addAttribute("listTransactions", this.transactionService.listTransactions());
