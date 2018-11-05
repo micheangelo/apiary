@@ -78,17 +78,25 @@
 					<td>${hive.description}</td>
 					<c:choose>
 						<c:when test="${!empty hive.family}">
-							<td><a href="<c:url value='family/edit/${hive.family.id}' />"><spring:message
-										code="global.show" /></a></td>
+							<td align="center"><a
+								href="<c:url value='family/edit/${hive.family.id}' />"><img
+									src="resources/icons/bee.png" alt=<spring:message
+										code="global.show" />></a></td>
 						</c:when>
 						<c:otherwise>
 							<td />
 						</c:otherwise>
 					</c:choose>
-					<td><a href="<c:url value='hive/edit/${hive.id}' />"><spring:message
-								code="global.edit" /></a></td>
-					<td><a href="<c:url value='hive/remove/${hive.id}' />"><spring:message
-								code="global.delete" /></a></td>
+					<td align="center"><a
+						href="<c:url value='hive/edit/${hive.id}' />"><img
+							src="resources/icons/edit.png"
+							alt=<spring:message
+								code="global.edit" />></a></td>
+					<td align="center"><a
+						href="<c:url value='hive/remove/${hive.id}' />"><img
+							src="resources/icons/delete.png"
+							alt=<spring:message
+								code="global.delete" />></a></td>
 				</tr>
 			</c:forEach>
 		</table>

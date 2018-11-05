@@ -45,18 +45,14 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Override
 	@Transactional
 	public List<Transaction> listTransactions() {
-		/*Session session = this.sessionFactory.getCurrentSession();
-		List<Transaction> transactionsList = session.createQuery("SELECT t, n.name AS type_name FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
-		for (Transaction c : transactionsList) {
-			logger.info("Transaction List::" + c);
-		}
-		return transactionsList;*/
 		List<Transaction> transactions = new ArrayList<>();
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Object[]> transactionsList = session.createQuery("SELECT t, n.name AS type_name FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
-		for(Object[] result: transactionsList) {
-			Transaction t = (Transaction)result[0];
-			t.setTypeName((String)result[1]);
+		List<Object[]> transactionsList = session.createQuery(
+				"SELECT t, n.name AS type_name FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id")
+				.list();
+		for (Object[] result : transactionsList) {
+			Transaction t = (Transaction) result[0];
+			t.setTypeName((String) result[1]);
 			transactions.add(t);
 		}
 		return transactions;
@@ -74,7 +70,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	public void deleteTransaction(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction t = (Transaction) session.load(Transaction.class, new Integer(id));
-		if (null != t) 
+		if (null != t)
 			session.delete(t);
 		logger.info("Transaction deleted successfully, transaction details=" + t);
 	}

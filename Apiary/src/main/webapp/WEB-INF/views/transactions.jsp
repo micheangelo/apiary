@@ -60,12 +60,12 @@
 	</h3>
 	<c:if test="${!empty listTransactions}">
 		<table class="tg">
-			<tr>				
+			<tr>
 				<th width="120"><spring:message code="transaction.date" /></th>
 				<th width="120"><spring:message code="transaction.description" /></th>
 				<th width="120"><spring:message code="transaction.quantity" /></th>
 				<th width="120"><spring:message code="transaction.price" /></th>
-				<th width="120"><spring:message code="transaction.type" /></th>				
+				<th width="120"><spring:message code="transaction.type" /></th>
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
@@ -76,12 +76,16 @@
 					<td>${transaction.quantity}</td>
 					<td>${transaction.price}</td>
 					<td>${transaction.typeName}</td>
-					<td><a
-						href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
-								code="global.edit" /></a></td>
-					<td><a
-						href="<c:url value='transaction/remove/${transaction.id}' />"><spring:message
-								code="global.delete" /></a></td>
+					<td align="center"><a
+						href="<c:url value='transaction/edit/${transaction.id}' />"><img
+							src="resources/icons/edit.png"
+							alt=<spring:message
+								code="global.edit" />></a></td>
+					<td align="center"><a
+						href="<c:url value='transaction/remove/${transaction.id}' />"><img
+							src="resources/icons/delete.png"
+							alt=<spring:message
+								code="global.delete" />></a></td>
 				</tr>
 			</c:forEach>
 		</table>

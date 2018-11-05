@@ -65,23 +65,29 @@
 				<th width="120"><spring:message code="family.queenBirthYear" /></th>
 				<th width="30"><spring:message code="family.hive" /></th>
 				<th width="60"><spring:message code="global.edit" /></th>
-				<th width="60"><spring:message code="global.delete" /></th>		
+				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
 			<c:forEach items="${listFamilies}" var="family">
 				<tr>
 					<td>${family.race}</td>
 					<td>${family.queenOrigin}</td>
 					<td>${family.queenBirthYear}</td>
-					<td>
-					<c:if test="${family.hive.id gt 0}">
-						<a href="<c:url value='hive/edit/${family.hive.id}' />"><spring:message
-								code="global.show" /></a>
-					</c:if>
-					</td>						
-					<td><a href="<c:url value='family/edit/${family.id}' />"><spring:message
-								code="global.edit" /></a></td>
-					<td><a href="<c:url value='family/remove/${family.id}' />"><spring:message
-								code="global.delete" /></a></td>
+					<td align="center"><c:if test="${family.hive.id gt 0}">
+							<a href="<c:url value='hive/edit/${family.hive.id}' />"> <img
+								src="resources/icons/hive.png"
+								alt=<spring:message
+									code="global.show" />></a>
+						</c:if></td>
+					<td align="center"><a
+						href="<c:url value='family/edit/${family.id}' />"><img
+							src="resources/icons/edit.png"
+							alt=<spring:message
+								code="global.edit" />></a></td>
+					<td align="center"><a
+						href="<c:url value='family/remove/${family.id}' />"><img
+							src="resources/icons/delete.png"
+							alt=<spring:message
+								code="global.delete" />></a></td>
 				</tr>
 			</c:forEach>
 		</table>
