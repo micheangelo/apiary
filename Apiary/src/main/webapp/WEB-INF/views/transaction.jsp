@@ -51,7 +51,7 @@
 						<spring:message code="transaction.type" />
 					</form:label></td>
 				<td><form:select path="transactionType">
-						<form:option value="" label="...." />
+						<form:option value="-1" label="...." />
 						<form:options items="${listTransactionTypes}" itemValue="id"
 							itemLabel="name" />
 					</form:select></td>

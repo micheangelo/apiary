@@ -75,7 +75,7 @@
 					<td>${transaction.description}</td>
 					<td>${transaction.quantity}</td>
 					<td>${transaction.price}</td>
-					<td>${transaction.transactionType}</td>
+					<td>${transaction.typeName}</td>
 					<td><a
 						href="<c:url value='transaction/edit/${transaction.id}' />"><spring:message
 								code="global.edit" /></a></td>

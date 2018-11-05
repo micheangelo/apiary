@@ -1,5 +1,6 @@
 package pl.manager.apiary.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -44,12 +45,21 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Override
 	@Transactional
 	public List<Transaction> listTransactions() {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Transaction> transactionsList = session.createQuery("SELECT t FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
+		/*Session session = this.sessionFactory.getCurrentSession();
+		List<Transaction> transactionsList = session.createQuery("SELECT t, n.name AS type_name FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
 		for (Transaction c : transactionsList) {
 			logger.info("Transaction List::" + c);
 		}
-		return transactionsList;
+		return transactionsList;*/
+		List<Transaction> transactions = new ArrayList<>();
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Object[]> transactionsList = session.createQuery("SELECT t, n.name AS type_name FROM Transaction t LEFT JOIN TransactionType n ON t.transactionType=n.id").list();
+		for(Object[] result: transactionsList) {
+			Transaction t = (Transaction)result[0];
+			t.setTypeName((String)result[1]);
+			transactions.add(t);
+		}
+		return transactions;
 	}
 
 	@Override

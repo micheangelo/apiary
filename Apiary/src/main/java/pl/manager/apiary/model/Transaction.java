@@ -9,12 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "transaction")
-@SecondaryTable(name="transaction_type")
+@SecondaryTable(name = "transaction_type")
 public class Transaction {
 	@Id
 	@Column(name = "id")
@@ -28,8 +29,16 @@ public class Transaction {
 	@Column(name = "transaction_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date transactionDate;
-	@Column(name="name", table="transaction_type")
-	private String name;
+	@Transient
+	private String typeName;
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
 	public int getTransactionType() {
 		return transactionType;
