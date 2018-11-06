@@ -1,9 +1,16 @@
 package pl.manager.apiary.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +32,7 @@ public class FamilyController {
 	public void setFamilyService(FamilyService familyService) {
 		this.familyService = familyService;
 	}
-	
+
 	@Autowired
 	@Qualifier(value = "hiveService")
 	public void setHiveService(HiveService hiveService) {
@@ -33,8 +40,13 @@ public class FamilyController {
 	}
 
 	@RequestMapping(value = "families", method = RequestMethod.GET)
-	public String listFamilies(Model model) {
-		model.addAttribute("listFamilies", familyService.listFamilies());
+	public String listFamilies(HttpServletRequest request, ModelMap modelMap) {
+		List<Family> families = familyService.listFamilies();
+		PagedListHolder<Family> pagedListHolder = new PagedListHolder<>(families);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setPageSize(10);
+		modelMap.put("listFamilies", pagedListHolder);
 		return "families";
 	}
 
@@ -53,7 +65,7 @@ public class FamilyController {
 		model.addAttribute("family", f);
 		model.addAttribute("operation", ApiaryConst.EDIT);
 		int hiveId = 0;
-		if(f.getHive() != null)
+		if (f.getHive() != null)
 			hiveId = f.getHive().getId();
 		model.addAttribute("listHives", this.hiveService.listFreeAndCurrentHives(hiveId));
 		return "family";
@@ -61,7 +73,7 @@ public class FamilyController {
 
 	@RequestMapping(value = { "family/save", "family/edit/save" })
 	public String saveFamily(@ModelAttribute("family") Family f) {
-		if(f.getHive() == null || f.getHive().getId() == -1)
+		if (f.getHive() == null || f.getHive().getId() == -1)
 			f.setHive(null);
 		if (f.getId() > 0)
 			this.familyService.updateFamily(f);

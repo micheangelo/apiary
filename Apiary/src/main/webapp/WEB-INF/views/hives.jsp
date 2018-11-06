@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
@@ -18,6 +19,7 @@
 	border-collapse: collapse;
 	border-spacing: 0;
 	border-color: #ccc;
+	width: 100%;
 }
 
 .tg td {
@@ -54,10 +56,17 @@
 </head>
 <body>
 	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
-	<h3>
-		<spring:message code="hive.list" />
-	</h3>
-	<c:if test="${!empty listHives}">
+	<div class="container" style="margin-top: 20px;">
+		<jsp:useBean id="listHives" scope="request"
+			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.Hive>" />
+		<c:url value="/hives" var="pagedLink">
+			<c:param name="p" value="~" />
+		</c:url>
+
+		<h3>
+			<spring:message code="hive.list" />
+		</h3>
+		<tg:paging pagedListHolder="${listHives}" pagedLink="${pagedLink}" />
 		<table class="tg">
 			<tr>
 				<th width="80"><spring:message code="hive.identifier" /></th>
@@ -69,7 +78,7 @@
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${listHives}" var="hive">
+			<c:forEach items="${listHives.pageList}" var="hive">
 				<tr>
 					<td>${hive.identifier}</td>
 					<td>${hive.material}</td>
@@ -80,7 +89,8 @@
 						<c:when test="${!empty hive.family}">
 							<td align="center"><a
 								href="<c:url value='family/edit/${hive.family.id}' />"><img
-									src="resources/icons/bee.png" alt=<spring:message
+									src="resources/icons/bee.png"
+									alt=<spring:message
 										code="global.show" />></a></td>
 						</c:when>
 						<c:otherwise>
@@ -100,11 +110,12 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
-	<br />
-	<form:form action="hive/add" modelAttribute="hive">
-		<input type="submit" name="addHive"
-			value="<spring:message code="global.add"/>" />
-	</form:form>
+		<tg:paging pagedListHolder="${listHives}" pagedLink="${pagedLink}" />
+		<br />
+		<form:form action="hive/add" modelAttribute="hive">
+			<input type="submit" name="addHive"
+				value="<spring:message code="global.add"/>" />
+		</form:form>
+	</div>
 </body>
 </html>

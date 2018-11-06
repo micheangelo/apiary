@@ -13,64 +13,67 @@
 <body>
 	<a id="ddmenuLink"
 		href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
-	<h3>
-		<c:choose>
-			<c:when test="${operation == 'add'}">
-				<spring:message code="hive.add" />
-			</c:when>
-			<c:otherwise>
-				<spring:message code="hive.edit" />
-			</c:otherwise>
-		</c:choose>
-	</h3>
-	<form:form action="save" modelAttribute="hive">
-		<table>
-			<c:if test="${hive.id gt 0}">
-				<form:hidden path="id" />
-			</c:if>
-			<tr>
-				<td><form:label path="identifier">
-						<spring:message code="hive.identifier" />
-					</form:label></td>
-				<td><form:input path="identifier" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="material">
-						<spring:message code="hive.material" />
-					</form:label></td>
-				<td><form:input path="material" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="purchaseYear">
-						<spring:message code="hive.purchaseYear" />
-					</form:label></td>
-				<td><form:input path="purchaseYear" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="hiveType">
-						<spring:message code="hive.hiveType" />
-					</form:label></td>
-				<td><form:input path="hiveType" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="description">
-						<spring:message code="hive.description" />
-					</form:label></td>
-				<td><form:input path="description" /></td>
-			</tr>
-			<tr>
-				<td><c:choose>
-						<c:when test="${hive.id gt 0}">
-							<input type="submit" value="<spring:message code="global.save"/>" />
-						</c:when>
-						<c:otherwise>
-							<input type="submit" value="<spring:message code="global.add"/>" />
-						</c:otherwise>
-					</c:choose> <input type="button"
-					value="<spring:message code="global.cancel"/>"
-					onclick="history.back()" /></td>
-			</tr>
-		</table>
-	</form:form>
+	<div class="container" style="margin: 20px;">
+		<h3>
+			<c:choose>
+				<c:when test="${operation == 'add'}">
+					<spring:message code="hive.add" />
+				</c:when>
+				<c:otherwise>
+					<spring:message code="hive.edit" />
+				</c:otherwise>
+			</c:choose>
+		</h3>
+		<form:form action="save" modelAttribute="hive">
+			<table>
+				<c:if test="${hive.id gt 0}">
+					<form:hidden path="id" />
+				</c:if>
+				<tr>
+					<td><form:label path="identifier">
+							<spring:message code="hive.identifier" />
+						</form:label></td>
+					<td><form:input path="identifier" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="material">
+							<spring:message code="hive.material" />
+						</form:label></td>
+					<td><form:input path="material" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="purchaseYear">
+							<spring:message code="hive.purchaseYear" />
+						</form:label></td>
+					<td><form:input path="purchaseYear" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="hiveType">
+							<spring:message code="hive.hiveType" />
+						</form:label></td>
+					<td><form:input path="hiveType" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="description">
+							<spring:message code="hive.description" />
+						</form:label></td>
+					<td><form:input path="description" /></td>
+				</tr>
+				<tr>
+					<td><c:choose>
+							<c:when test="${hive.id gt 0}">
+								<input type="submit"
+									value="<spring:message code="global.save"/>" />
+							</c:when>
+							<c:otherwise>
+								<input type="submit" value="<spring:message code="global.add"/>" />
+							</c:otherwise>
+						</c:choose> <input type="button"
+						value="<spring:message code="global.cancel"/>"
+						onclick="history.back()" /></td>
+				</tr>
+			</table>
+		</form:form>
+	</div>
 </body>
 </html>

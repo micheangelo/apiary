@@ -16,10 +16,15 @@
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="transaction.title" /></title>
 <style type="text/css">
+.div{
+	margin: 20px;
+}
+
 .tg {
 	border-collapse: collapse;
 	border-spacing: 0;
 	border-color: #ccc;
+	width: 100%;
 }
 
 .tg td {
@@ -55,19 +60,18 @@
 </style>
 </head>
 <body>
+	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
 	<div class="container" style="margin-top: 20px;">
-		<jsp:useBean id="pagedListHolder" scope="request"
+		<jsp:useBean id="listTransactions" scope="request"
 			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.Transaction>" />
 		<c:url value="/transactions" var="pagedLink">
 			<c:param name="p" value="~" />
 		</c:url>
 
-		<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
-
 		<h3>
 			<spring:message code="transaction.list" />
 		</h3>
-		<tg:paging pagedListHolder="${pagedListHolder}"
+		<tg:paging pagedListHolder="${listTransactions}"
 			pagedLink="${pagedLink}" />
 		<table class="tg">
 			<tr>
@@ -79,7 +83,7 @@
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${pagedListHolder.pageList}" var="transaction">
+			<c:forEach items="${listTransactions.pageList}" var="transaction">
 				<tr>
 					<td>${transaction.transactionDate}</td>
 					<td>${transaction.description}</td>
@@ -99,8 +103,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<tg:paging pagedListHolder="${pagedListHolder}"
-				pagedLink="${pagedLink}" />
+		<tg:paging pagedListHolder="${listTransactions}"
+			pagedLink="${pagedLink}" />
 		<br />
 		<form:form action="transaction/add" modelAttribute="transaction">
 			<input type="submit" name="addTransaction"

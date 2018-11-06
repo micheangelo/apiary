@@ -1,9 +1,16 @@
 package pl.manager.apiary.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +34,13 @@ public class HiveController {
 	}
 
 	@RequestMapping(value = "hives", method = RequestMethod.GET)
-	public String listHives(Model model) {
-		model.addAttribute("listHives", hiveService.listHives());
+	public String listHives(HttpServletRequest request, ModelMap modelMap) {
+		List<Hive> hives = hiveService.listHives();
+		PagedListHolder<Hive> pagedListHolder = new PagedListHolder<>(hives);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setPageSize(10);
+		modelMap.put("listHives", pagedListHolder);
 		return "hives";
 	}
 
@@ -49,14 +61,14 @@ public class HiveController {
 
 	@RequestMapping(value = { "hive/save", "hive/edit/save" })
 	public String saveHive(@ModelAttribute("hive") Hive h) {
-		if(h.getId() >0)
+		if (h.getId() > 0)
 			hiveService.updateHive(h);
 		else
 			hiveService.addHive(h);
 		return "redirect:/hives";
 	}
-	
-	@RequestMapping(value= {"hive/remove/{id}"})
+
+	@RequestMapping(value = { "hive/remove/{id}" })
 	public String removeHive(@PathVariable("id") int id) {
 		this.hiveService.removeHive(id);
 		return "redirect:/hives";

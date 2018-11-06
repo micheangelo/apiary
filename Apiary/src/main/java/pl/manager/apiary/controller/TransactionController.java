@@ -47,8 +47,8 @@ public class TransactionController {
 		PagedListHolder<Transaction> pagedListHolder = new PagedListHolder<>(transactions);
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
-		pagedListHolder.setPageSize(3);
-		modelMap.put("pagedListHolder", pagedListHolder);
+		pagedListHolder.setPageSize(10);
+		modelMap.put("listTransactions", pagedListHolder);
 		return "transactions";
 	}
 

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
@@ -18,6 +19,7 @@
 	border-collapse: collapse;
 	border-spacing: 0;
 	border-color: #ccc;
+	width: 100%;
 }
 
 .tg td {
@@ -54,10 +56,18 @@
 </head>
 <body>
 	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
-	<h3>
-		<spring:message code="family.list" />
-	</h3>
-	<c:if test="${!empty listFamilies}">
+	<div class="container" style="margin-top: 20px;">
+		<jsp:useBean id="listFamilies" scope="request"
+			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.Family>" />
+		<c:url value="/families" var="pagedLink">
+			<c:param name="p" value="~" />
+		</c:url>
+
+		<h3>
+			<spring:message code="family.list" />
+		</h3>
+
+		<tg:paging pagedListHolder="${listFamilies}" pagedLink="${pagedLink}" />
 		<table class="tg">
 			<tr>
 				<th width="80"><spring:message code="family.race" /></th>
@@ -67,7 +77,7 @@
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${listFamilies}" var="family">
+			<c:forEach items="${listFamilies.pageList}" var="family">
 				<tr>
 					<td>${family.race}</td>
 					<td>${family.queenOrigin}</td>
@@ -91,11 +101,12 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
-	<br />
-	<form:form action="family/add" modelAttribute="family">
-		<input type="submit" name="addFamily"
-			value="<spring:message code="global.add"/>" />
-	</form:form>
+		<tg:paging pagedListHolder="${listFamilies}" pagedLink="${pagedLink}" />
+		<br />
+		<form:form action="family/add" modelAttribute="family">
+			<input type="submit" name="addFamily"
+				value="<spring:message code="global.add"/>" />
+		</form:form>
+	</div>
 </body>
 </html>
