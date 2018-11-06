@@ -1,6 +1,8 @@
+<%@page import="pl.manager.apiary.model.Transaction"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
@@ -53,12 +55,20 @@
 </style>
 </head>
 <body>
-	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
+	<div class="container" style="margin-top: 20px;">
+		<jsp:useBean id="pagedListHolder" scope="request"
+			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.Transaction>" />
+		<c:url value="/transactions" var="pagedLink">
+			<c:param name="p" value="~" />
+		</c:url>
 
-	<h3>
-		<spring:message code="transaction.list" />
-	</h3>
-	<c:if test="${!empty listTransactions}">
+		<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
+
+		<h3>
+			<spring:message code="transaction.list" />
+		</h3>
+		<tg:paging pagedListHolder="${pagedListHolder}"
+			pagedLink="${pagedLink}" />
 		<table class="tg">
 			<tr>
 				<th width="120"><spring:message code="transaction.date" /></th>
@@ -69,7 +79,7 @@
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${listTransactions}" var="transaction">
+			<c:forEach items="${pagedListHolder.pageList}" var="transaction">
 				<tr>
 					<td>${transaction.transactionDate}</td>
 					<td>${transaction.description}</td>
@@ -89,11 +99,13 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
-	<br />
-	<form:form action="transaction/add" modelAttribute="transaction">
-		<input type="submit" name="addTransaction"
-			value="<spring:message code="global.add"/>" />
-	</form:form>
+		<tg:paging pagedListHolder="${pagedListHolder}"
+				pagedLink="${pagedLink}" />
+		<br />
+		<form:form action="transaction/add" modelAttribute="transaction">
+			<input type="submit" name="addTransaction"
+				value="<spring:message code="global.add"/>" />
+		</form:form>
+	</div>
 </body>
 </html>

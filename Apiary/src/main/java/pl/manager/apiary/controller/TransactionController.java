@@ -1,9 +1,16 @@
 package pl.manager.apiary.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +40,15 @@ public class TransactionController {
 	public void setTransactionTypeService(TransactionTypeService typeService) {
 		this.transactionTypeService = typeService;
 	}
-
+	
 	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
-	public String listTransactions(Model model) {
-		model.addAttribute("transaction", new Transaction());
-		model.addAttribute("listTransactions", this.transactionService.listTransactions());
-
-		// transaction types
-		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
+	public String listTransactions(HttpServletRequest request, ModelMap modelMap) {
+		List<Transaction> transactions = this.transactionService.listTransactions();
+		PagedListHolder<Transaction> pagedListHolder = new PagedListHolder<>(transactions);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setPageSize(3);
+		modelMap.put("pagedListHolder", pagedListHolder);
 		return "transactions";
 	}
 
@@ -73,7 +81,7 @@ public class TransactionController {
 			this.transactionService.updateTransaction(t);
 		else
 			this.transactionService.addTransaction(t);
-		return "redirect:/";
+		return "redirect:/transactions";
 	}
 
 }
