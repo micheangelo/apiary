@@ -83,18 +83,18 @@
 					<td>${family.queenOrigin}</td>
 					<td>${family.queenBirthYear}</td>
 					<td align="center"><c:if test="${family.hive.id gt 0}">
-							<a href="<c:url value='hive/edit/${family.hive.id}' />"> <img
+							<a href="<c:url value='hives/edit/${family.hive.id}' />"> <img
 								src="resources/icons/hive.png"
 								alt=<spring:message
 									code="global.show" />></a>
 						</c:if></td>
 					<td align="center"><a
-						href="<c:url value='family/edit/${family.id}' />"><img
+						href="<c:url value='families/edit/${family.id}' />"><img
 							src="resources/icons/edit.png"
 							alt=<spring:message
 								code="global.edit" />></a></td>
 					<td align="center"><a
-						href="<c:url value='family/remove/${family.id}' />"><img
+						href="<c:url value='families/remove/${family.id}' />"><img
 							src="resources/icons/delete.png"
 							alt=<spring:message
 								code="global.delete" />></a></td>
@@ -103,7 +103,7 @@
 		</table>
 		<tg:paging pagedListHolder="${listFamilies}" pagedLink="${pagedLink}" />
 		<br />
-		<form:form action="family/add" modelAttribute="family">
+		<form:form action="families/add" modelAttribute="family">
 			<input type="submit" name="addFamily"
 				value="<spring:message code="global.add"/>" />
 		</form:form>

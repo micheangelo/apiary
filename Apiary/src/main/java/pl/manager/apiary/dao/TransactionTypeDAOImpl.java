@@ -18,6 +18,18 @@ public class TransactionTypeDAOImpl implements TransactionTypeDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Override
+	public void addTransactionType(TransactionType t) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(t);
+	}
+
+	@Override
+	public void updateTransactionType(TransactionType t) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(t);
+	}
+
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
@@ -28,6 +40,19 @@ public class TransactionTypeDAOImpl implements TransactionTypeDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<TransactionType> transactionTypes = session.createQuery("from TransactionType").list();
 		return transactionTypes;
+	}
+
+	@Override
+	public TransactionType getTransactionTypeById(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		TransactionType transactionType = (TransactionType) session.get(TransactionType.class, new Integer(id));
+		return transactionType;
+	}
+
+	@Override
+	public void removeTransactionType(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.delete(this.getTransactionTypeById(id));
 	}
 
 }

@@ -88,7 +88,7 @@
 					<c:choose>
 						<c:when test="${!empty hive.family}">
 							<td align="center"><a
-								href="<c:url value='family/edit/${hive.family.id}' />"><img
+								href="<c:url value='families/edit/${hive.family.id}' />"><img
 									src="resources/icons/bee.png"
 									alt=<spring:message
 										code="global.show" />></a></td>
@@ -98,12 +98,12 @@
 						</c:otherwise>
 					</c:choose>
 					<td align="center"><a
-						href="<c:url value='hive/edit/${hive.id}' />"><img
+						href="<c:url value='hives/edit/${hive.id}' />"><img
 							src="resources/icons/edit.png"
 							alt=<spring:message
 								code="global.edit" />></a></td>
 					<td align="center"><a
-						href="<c:url value='hive/remove/${hive.id}' />"><img
+						href="<c:url value='hives/remove/${hive.id}' />"><img
 							src="resources/icons/delete.png"
 							alt=<spring:message
 								code="global.delete" />></a></td>
@@ -112,7 +112,7 @@
 		</table>
 		<tg:paging pagedListHolder="${listHives}" pagedLink="${pagedLink}" />
 		<br />
-		<form:form action="hive/add" modelAttribute="hive">
+		<form:form action="hives/add" modelAttribute="hive">
 			<input type="submit" name="addHive"
 				value="<spring:message code="global.add"/>" />
 		</form:form>

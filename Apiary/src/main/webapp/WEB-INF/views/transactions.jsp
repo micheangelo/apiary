@@ -91,12 +91,12 @@
 					<td>${transaction.price}</td>
 					<td>${transaction.typeName}</td>
 					<td align="center"><a
-						href="<c:url value='transaction/edit/${transaction.id}' />"><img
+						href="<c:url value='transactions/edit/${transaction.id}' />"><img
 							src="resources/icons/edit.png"
 							alt=<spring:message
 								code="global.edit" />></a></td>
 					<td align="center"><a
-						href="<c:url value='transaction/remove/${transaction.id}' />"><img
+						href="<c:url value='transactions/remove/${transaction.id}' />"><img
 							src="resources/icons/delete.png"
 							alt=<spring:message
 								code="global.delete" />></a></td>
@@ -106,7 +106,7 @@
 		<tg:paging pagedListHolder="${listTransactions}"
 			pagedLink="${pagedLink}" />
 		<br />
-		<form:form action="transaction/add" modelAttribute="transaction">
+		<form:form action="transactions/add" modelAttribute="transaction">
 			<input type="submit" name="addTransaction"
 				value="<spring:message code="global.add"/>" />
 		</form:form>

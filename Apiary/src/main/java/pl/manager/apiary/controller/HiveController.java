@@ -24,6 +24,7 @@ import pl.manager.apiary.utils.ApiaryConst;
  * Hive controller
  */
 @Controller
+@RequestMapping(value = "/hives")
 public class HiveController {
 	private HiveService hiveService;
 
@@ -33,7 +34,7 @@ public class HiveController {
 		this.hiveService = hiveService;
 	}
 
-	@RequestMapping(value = "hives", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String listHives(HttpServletRequest request, ModelMap modelMap) {
 		List<Hive> hives = hiveService.listHives();
 		PagedListHolder<Hive> pagedListHolder = new PagedListHolder<>(hives);
@@ -44,7 +45,7 @@ public class HiveController {
 		return "hives";
 	}
 
-	@RequestMapping(value = "hive/add", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addHive(Model model) {
 		Hive h = new Hive();
 		model.addAttribute("operation", ApiaryConst.ADD);
@@ -52,14 +53,14 @@ public class HiveController {
 		return "hive";
 	}
 
-	@RequestMapping(value = "hive/edit/{id}")
+	@RequestMapping(value = "edit/{id}")
 	public String editHive(@PathVariable("id") int id, Model model) {
 		model.addAttribute("operation", ApiaryConst.EDIT);
 		model.addAttribute("hive", hiveService.getHiveById(id));
 		return "hive";
 	}
 
-	@RequestMapping(value = { "hive/save", "hive/edit/save" })
+	@RequestMapping(value = { "save", "edit/save" })
 	public String saveHive(@ModelAttribute("hive") Hive h) {
 		if (h.getId() > 0)
 			hiveService.updateHive(h);
@@ -68,7 +69,7 @@ public class HiveController {
 		return "redirect:/hives";
 	}
 
-	@RequestMapping(value = { "hive/remove/{id}" })
+	@RequestMapping(value = { "remove/{id}" })
 	public String removeHive(@PathVariable("id") int id) {
 		this.hiveService.removeHive(id);
 		return "redirect:/hives";

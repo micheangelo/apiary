@@ -25,6 +25,7 @@ import pl.manager.apiary.utils.ApiaryConst;
  * Transaction controller
  */
 @Controller
+@RequestMapping(value="/transactions")
 public class TransactionController {
 	private TransactionService transactionService;
 	private TransactionTypeService transactionTypeService;
@@ -41,7 +42,7 @@ public class TransactionController {
 		this.transactionTypeService = typeService;
 	}
 	
-	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String listTransactions(HttpServletRequest request, ModelMap modelMap) {
 		List<Transaction> transactions = this.transactionService.listTransactions();
 		PagedListHolder<Transaction> pagedListHolder = new PagedListHolder<>(transactions);
@@ -52,7 +53,7 @@ public class TransactionController {
 		return "transactions";
 	}
 
-	@RequestMapping(value = "transaction/add", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addTransaction(Model model) {
 		Transaction t = new Transaction();
 		model.addAttribute("operation", ApiaryConst.ADD);
@@ -61,13 +62,13 @@ public class TransactionController {
 		return "transaction";
 	}
 
-	@RequestMapping(value = "transaction/remove/{id}")
+	@RequestMapping(value = "remove/{id}")
 	public String removeTransaction(@PathVariable("id") int id) {
 		this.transactionService.removeTransaction(id);
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "transaction/edit/{id}")
+	@RequestMapping(value = "edit/{id}")
 	public String editTransaction(@PathVariable("id") int id, Model model) {
 		model.addAttribute("transaction", this.transactionService.getTransactionById(id));
 		model.addAttribute("operation", ApiaryConst.EDIT);
@@ -75,7 +76,7 @@ public class TransactionController {
 		return "transaction";
 	}
 
-	@RequestMapping(value = { "transaction/save", "transaction/edit/save" })
+	@RequestMapping(value = { "save", "edit/save" })
 	public String saveTransaction(@ModelAttribute("transaction") Transaction t) {
 		if (t.getId() > 0)
 			this.transactionService.updateTransaction(t);

@@ -22,6 +22,7 @@ import pl.manager.apiary.service.hive.HiveService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 @Controller
+@RequestMapping(value = "/families")
 public class FamilyController {
 
 	private FamilyService familyService;
@@ -39,7 +40,7 @@ public class FamilyController {
 		this.hiveService = hiveService;
 	}
 
-	@RequestMapping(value = "families", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String listFamilies(HttpServletRequest request, ModelMap modelMap) {
 		List<Family> families = familyService.listFamilies();
 		PagedListHolder<Family> pagedListHolder = new PagedListHolder<>(families);
@@ -50,7 +51,7 @@ public class FamilyController {
 		return "families";
 	}
 
-	@RequestMapping(value = "family/add", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addFamily(Model model) {
 		Family f = new Family();
 		model.addAttribute("operation", ApiaryConst.ADD);
@@ -59,7 +60,7 @@ public class FamilyController {
 		return "family";
 	}
 
-	@RequestMapping(value = "family/edit/{id}")
+	@RequestMapping(value = "edit/{id}")
 	public String editFamily(@PathVariable("id") int id, Model model) {
 		Family f = familyService.getFamilyById(id);
 		model.addAttribute("family", f);
@@ -71,7 +72,7 @@ public class FamilyController {
 		return "family";
 	}
 
-	@RequestMapping(value = { "family/save", "family/edit/save" })
+	@RequestMapping(value = { "save", "edit/save" })
 	public String saveFamily(@ModelAttribute("family") Family f) {
 		if (f.getHive() == null || f.getHive().getId() == -1)
 			f.setHive(null);
@@ -82,7 +83,7 @@ public class FamilyController {
 		return "redirect:/families";
 	}
 
-	@RequestMapping(value = "family/remove/{id}")
+	@RequestMapping(value = "remove/{id}")
 	public String removeFamily(@PathVariable("id") int id) {
 		this.familyService.removeFamily(id);
 		return "redirect:/families";

@@ -19,7 +19,7 @@ public class TransactionType {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String symbol;
+	private char symbol;
 
 	public int getId() {
 		return id;
@@ -37,11 +37,11 @@ public class TransactionType {
 		this.name = name;
 	}
 
-	public String getSymbol() {
+	public char getSymbol() {
 		return symbol;
 	}
 
-	public void setSymbol(String symbol) {
+	public void setSymbol(char symbol) {
 		this.symbol = symbol;
 	}
 
