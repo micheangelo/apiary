@@ -4,3 +4,6 @@ https://docs.spring.io/spring-security/site/docs/current/guides/html5/form-javac
 
 Tables pagination:
 http://learningprogramming.net/java/spring-mvc/pagination-with-spring-data-jpa-in-spring-mvc/
+
+JQuery library:
+https://jqueryui.com/

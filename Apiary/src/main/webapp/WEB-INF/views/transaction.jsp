@@ -7,7 +7,16 @@
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/jquery/jquery-ui.css" />"
+	rel="stylesheet">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
+<script src="<c:url value="/resources/jquery/jquery-3.3.1.min.js" />"></script>
+<script src="<c:url value="/resources/jquery/jquery-ui.js" />"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
 <title><spring:message code="transaction.edit.title" /></title>
 </head>
 <body>
@@ -62,6 +71,10 @@
 							<spring:message code="transaction.date" />
 						</form:label></td>
 					<td><form:input path="transactionDate" /></td>
+				</tr>
+				<tr>
+					<td>Test datepicker:</td>
+					<td><form:input path="" id="datepicker" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><c:if test="${!empty transaction.description}">

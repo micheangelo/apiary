@@ -13,49 +13,12 @@
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="transaction.type.title" /></title>
 <style type="text/css">
-.div{
+.div {
 	margin: 20px;
-}
-
-.tg {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-color: #ccc;
-	width: 100%;
-}
-
-.tg td {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: #fff;
-}
-
-.tg th {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: #f0f0f0;
-}
-
-.tg .tg-4eph {
-	background-color: #f9f9f9
 }
 </style>
 </head>
@@ -80,7 +43,8 @@
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${listTransactionTypes.pageList}" var="transactionType">
+			<c:forEach items="${listTransactionTypes.pageList}"
+				var="transactionType">
 				<tr>
 					<td>${transactionType.name}</td>
 					<td>${transactionType.symbol}</td>
@@ -100,7 +64,8 @@
 		<tg:paging pagedListHolder="${listTransactionTypes}"
 			pagedLink="${pagedLink}" />
 		<br />
-		<form:form action="transaction-types/add" modelAttribute="transactionType">
+		<form:form action="transaction-types/add"
+			modelAttribute="transactionType">
 			<input type="submit" name="addTransactionType"
 				value="<spring:message code="global.add"/>" />
 		</form:form>
