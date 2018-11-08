@@ -7,3 +7,4 @@ http://learningprogramming.net/java/spring-mvc/pagination-with-spring-data-jpa-i
 
 JQuery library:
 https://jqueryui.com/
+https://jqueryui.com/datepicker/#date-formats

@@ -14,7 +14,11 @@
 <script src="<c:url value="/resources/jquery/jquery-ui.js" />"></script>
 <script>
 	$(function() {
-		$("#datepicker").datepicker();
+		$("#datepicker").datepicker({
+			dateFormat : "yy-mm-dd",
+			changeMonth : true,
+			changeYear : true
+		}).val()
 	});
 </script>
 <title><spring:message code="transaction.edit.title" /></title>
@@ -70,11 +74,7 @@
 					<td><form:label path="transactionDate">
 							<spring:message code="transaction.date" />
 						</form:label></td>
-					<td><form:input path="transactionDate" /></td>
-				</tr>
-				<tr>
-					<td>Test datepicker:</td>
-					<td><form:input path="" id="datepicker" /></td>
+					<td><form:input path="transactionDate" id="datepicker" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><c:if test="${!empty transaction.description}">
