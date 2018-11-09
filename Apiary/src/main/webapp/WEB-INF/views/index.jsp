@@ -18,8 +18,8 @@ img {
 <body>
 	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
 	<div class="container" style="margin-top: 20px;">
-		<br /> <img src="resources/icons/apiarist.png" alt="pszczelarz"
-			class="center">
+		<br /> <!-- <img src="resources/icons/apiarist.png" alt="pszczelarz"
+			class="center">-->
 		<iframe
 			src="https://www.meteoblue.com/en/weather/widget/three?geoloc=detect&nocurrent=0&noforecast=0&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=bright"
 			frameborder="0" scrolling="NO" allowtransparency="true"

@@ -34,3 +34,28 @@ CREATE TABLE family (
 	REFERENCES hive(id)
 )
 /
+CREATE TABLE inspection (
+ id INT AUTO_INCREMENT primary key NOT NULL,
+ inspection_date DATETIME,
+ open_brood BOOLEAN,
+ closed_brood BOOLEAN,
+ queen_present BOOLEAN,
+ number_of_frames INT,
+ number_of_brood_frames INT,
+ is_swarm_mood BOOLEAN,
+ temperature DECIMAL (5,2),	
+ hive_id INT,
+ FOREIGN KEY (hive_id)
+	REFERENCES hive(id),
+ notes VARCHAR(2000)
+)
+/
+CREATE TABLE inspection_status (
+	id INT AUTO_INCREMENT primary key NOT NULL,
+	symbol VARCHAR(1),
+	name VARCHAR(100),
+	inspection_id INT,
+	FOREIGN KEY (inspection_id)
+		REFERENCES inspection(id)
+)
+/

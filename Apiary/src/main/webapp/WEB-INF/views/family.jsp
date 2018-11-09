@@ -11,6 +11,7 @@
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
+<script src="<c:url value="/resources/jquery/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="family.edit.title" /></title>
 </head>
@@ -49,7 +50,16 @@
 					<td><form:label path="queenBirthYear">
 							<spring:message code="family.queenBirthYear" />
 						</form:label></td>
-					<td><form:input path="queenBirthYear" /></td>
+					<td><select name="queenBirthYear" id="queenBirthYear">
+					</select>	
+					<script type="text/javascript">
+						for (i = new Date().getFullYear(); i > 2000; i--)
+						{
+						    $('#queenBirthYear').append($('<option />').val(i).html(i));
+						}
+						$("#queenBirthYear").prop('value',"${family.queenBirthYear}");
+				    </script>
+					</td>
 				</tr>
 				<tr>
 					<td><form:label path="hive">

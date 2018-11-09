@@ -7,6 +7,7 @@
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
+<script src="<c:url value="/resources/jquery/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="hive.edit.title" /></title>
 </head>
@@ -45,7 +46,15 @@
 					<td><form:label path="purchaseYear">
 							<spring:message code="hive.purchaseYear" />
 						</form:label></td>
-					<td><form:input path="purchaseYear" /></td>
+					<td><select name="purchaseYear" id="purchaseYear">
+					</select> <script type="text/javascript">
+						for (i = new Date().getFullYear(); i > 2000; i--) {
+							$('#purchaseYear').append(
+									$('<option />').val(i).html(i));
+						}
+						$("#purchaseYear")
+								.prop('value', "${hive.purchaseYear}");
+					</script></td>
 				</tr>
 				<tr>
 					<td><form:label path="hiveType">
