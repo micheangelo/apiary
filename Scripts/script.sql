@@ -44,18 +44,18 @@ CREATE TABLE inspection (
  number_of_brood_frames INT,
  is_swarm_mood BOOLEAN,
  temperature DECIMAL (5,2),	
- hive_id INT,
+ notes VARCHAR(2000),
+ hive_id INT, 
  FOREIGN KEY (hive_id)
 	REFERENCES hive(id),
- notes VARCHAR(2000)
+ inspection_status_id INT,
+ FOREIGN KEY (inspection_status_id)
+	REFERENCES inspection_status(id)
 )
 /
 CREATE TABLE inspection_status (
 	id INT AUTO_INCREMENT primary key NOT NULL,
 	symbol VARCHAR(1),
-	name VARCHAR(100),
-	inspection_id INT,
-	FOREIGN KEY (inspection_id)
-		REFERENCES inspection(id)
+	name VARCHAR(100)
 )
 /
