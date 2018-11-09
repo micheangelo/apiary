@@ -9,14 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SecondaryTable;
-import javax.persistence.SecondaryTables;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "inspection")
-@SecondaryTables({ @SecondaryTable(name = "hive"), @SecondaryTable(name = "inspection_status") })
 public class Inspection {
 	@Id
 	@Column(name = "id")
@@ -38,14 +35,11 @@ public class Inspection {
 	private boolean isSwarmMood;
 	private double temperature;
 	private String notes;
+	private int status;	
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hive_id")
 	private Hive hive;
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "inspection_status_id")
-	private InspectionStatus inspectionStatus;
 
 	public int getId() {
 		return id;
@@ -127,20 +121,20 @@ public class Inspection {
 		this.notes = notes;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public Hive getHive() {
 		return hive;
 	}
 
 	public void setHive(Hive hive) {
 		this.hive = hive;
-	}
-
-	public InspectionStatus getInspectionStatus() {
-		return inspectionStatus;
-	}
-
-	public void setInspectionStatus(InspectionStatus inspectionStatus) {
-		this.inspectionStatus = inspectionStatus;
 	}
 
 }

@@ -1,4 +1,4 @@
-package pl.manager.apiary.service.transaction;
+package pl.manager.apiary.service;
 
 import java.util.List;
 

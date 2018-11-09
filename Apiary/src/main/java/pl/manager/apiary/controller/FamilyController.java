@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Family;
-import pl.manager.apiary.service.family.FamilyService;
-import pl.manager.apiary.service.hive.HiveService;
+import pl.manager.apiary.service.FamilyService;
+import pl.manager.apiary.service.HiveService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 @Controller

@@ -48,6 +48,7 @@
 				<beans:value>pl.manager.apiary.model.TransactionType</beans:value>
 				<beans:value>pl.manager.apiary.model.Hive</beans:value>
 				<beans:value>pl.manager.apiary.model.Family</beans:value>
+				<beans:value>pl.manager.apiary.model.Inspection</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -65,7 +66,7 @@
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="transactionService"
-		class="pl.manager.apiary.service.transaction.TransactionServiceImpl">
+		class="pl.manager.apiary.service.TransactionServiceImpl">
 		<beans:property name="transactionDAO"
 			ref="transactionDAO"></beans:property>
 	</beans:bean>
@@ -76,32 +77,43 @@
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="transactionTypeService"
-		class="pl.manager.apiary.service.transaction.type.TransactionTypeServiceImpl">
+		class="pl.manager.apiary.service.TransactionTypeServiceImpl">
 		<beans:property name="transactionTypeDAO"
 			ref="transactionTypeDAO"></beans:property>
 	</beans:bean>
 
 
 	<beans:bean id="hiveDAO"
-	class="pl.manager.apiary.dao.HiveDAOImpl">
+		class="pl.manager.apiary.dao.HiveDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory">
 		</beans:property>
 	</beans:bean>
 	<beans:bean id="hiveService"
-		class="pl.manager.apiary.service.hive.HiveServiceImpl">
+		class="pl.manager.apiary.service.HiveServiceImpl">
 		<beans:property name="hiveDAO" ref="hiveDAO"></beans:property>
 	</beans:bean>
-	
+
 	<beans:bean id="familyDAO"
-	class="pl.manager.apiary.dao.FamilyDAOImpl">
+		class="pl.manager.apiary.dao.FamilyDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory">
 		</beans:property>
 	</beans:bean>
 	<beans:bean id="familyService"
-		class="pl.manager.apiary.service.family.FamilyServiceImpl">
+		class="pl.manager.apiary.service.FamilyServiceImpl">
 		<beans:property name="familyDAO" ref="familyDAO"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="inspectionDAO"
+		class="pl.manager.apiary.dao.InspectionDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
+	<beans:bean id="inspectionService"
+		class="pl.manager.apiary.service.InspectionServiceImpl">
+		<beans:property name="inspectionDAO"
+			ref="inspectionDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"

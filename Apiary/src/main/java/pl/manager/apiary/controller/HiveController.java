@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Hive;
-import pl.manager.apiary.service.hive.HiveService;
+import pl.manager.apiary.service.HiveService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 /**
