@@ -3,19 +3,17 @@ package pl.manager.apiary.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.manager.apiary.model.Transaction;
 
 @Repository
-@Transactional
 public class TransactionDAOImpl implements TransactionDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransactionDAOImpl.class);
@@ -28,6 +26,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	}
 
 	@Override
+	@Transactional
 	public void addTransaction(Transaction t) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(t);
@@ -35,15 +34,16 @@ public class TransactionDAOImpl implements TransactionDAO {
 	}
 
 	@Override
+	@Transactional
 	public void updateTransaction(Transaction t) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(t);
 		logger.info("Transaction updated successfully, transaction details=" + t);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
 	public List<Transaction> listTransactions() {
 		List<Transaction> transactions = new ArrayList<>();
 		Session session = this.sessionFactory.getCurrentSession();
@@ -59,6 +59,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Transaction getTransactions(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction t = (Transaction) session.load(Transaction.class, new Integer(id));
@@ -67,6 +68,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	}
 
 	@Override
+	@Transactional
 	public void deleteTransaction(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction t = (Transaction) session.load(Transaction.class, new Integer(id));

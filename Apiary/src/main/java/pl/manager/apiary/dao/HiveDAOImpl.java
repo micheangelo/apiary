@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.manager.apiary.model.Family;
 import pl.manager.apiary.model.Family_;
@@ -24,7 +24,6 @@ import pl.manager.apiary.model.Hive;
 import pl.manager.apiary.model.Hive_;
 
 @Repository
-@Transactional
 public class HiveDAOImpl implements HiveDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransactionDAOImpl.class);
@@ -37,6 +36,7 @@ public class HiveDAOImpl implements HiveDAO {
 	}
 
 	@Override
+	@Transactional
 	public void addHive(Hive h) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(h);
@@ -44,14 +44,16 @@ public class HiveDAOImpl implements HiveDAO {
 	}
 
 	@Override
+	@Transactional
 	public void updateHive(Hive h) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(h);
 		logger.info("Hive was updated");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
 	public List<Hive> listHives() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Hive> hivesList = session.createQuery("from Hive").list();
@@ -59,18 +61,17 @@ public class HiveDAOImpl implements HiveDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Hive getHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		//join fetch to load families
-		Query q = session.createQuery(
-				"SELECT h FROM Hive h " +
-				" LEFT JOIN FETCH " +
-				" h.family f WHERE h.id=:id"); 
+		// join fetch to load families
+		Query q = session.createQuery("SELECT h FROM Hive h " + " LEFT JOIN FETCH " + " h.family f WHERE h.id=:id");
 		q.setParameter("id", id);
 		return (Hive) q.getSingleResult();
 	}
 
 	@Override
+	@Transactional
 	public void deleteHive(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Hive h = getHive(id);
@@ -79,6 +80,7 @@ public class HiveDAOImpl implements HiveDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Hive> listFreeHives() {
 		Session session = this.sessionFactory.getCurrentSession();
 		CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -100,6 +102,7 @@ public class HiveDAOImpl implements HiveDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Hive> listFreeAndCurrentHives(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		CriteriaBuilder cb = session.getCriteriaBuilder();

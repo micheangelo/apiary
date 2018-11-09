@@ -65,7 +65,7 @@ public class TransactionController {
 	@RequestMapping(value = "remove/{id}")
 	public String removeTransaction(@PathVariable("id") int id) {
 		this.transactionService.removeTransaction(id);
-		return "redirect:/";
+		return "redirect:/transactions";
 	}
 
 	@RequestMapping(value = "edit/{id}")
