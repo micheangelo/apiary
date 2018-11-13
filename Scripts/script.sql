@@ -48,14 +48,7 @@ CREATE TABLE inspection (
  hive_id INT, 
  FOREIGN KEY (hive_id)
 	REFERENCES hive(id),
- inspection_status_id INT,
- FOREIGN KEY (inspection_status_id)
-	REFERENCES inspection_status(id)
+ status CHAR(1)
 )
 /
-CREATE TABLE inspection_status (
-	id INT AUTO_INCREMENT primary key NOT NULL,
-	symbol VARCHAR(1),
-	name VARCHAR(100)
-)
-/
+
