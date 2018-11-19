@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "inspection")
 public class Inspection {
@@ -20,22 +22,23 @@ public class Inspection {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "inspection_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date inspectionDate;
 	@Column(name = "open_brood")
 	private boolean hasOpenBrood;
 	@Column(name = "closed_brood")
 	private boolean hasClosedBrood;
 	@Column(name = "queen_present")
-	private boolean isQueenPresent;
+	private boolean queenPresent;
 	@Column(name = "number_of_frames")
 	private int numberOfFrames;
 	@Column(name = "number_of_brood_frames")
 	private int numberOfBroodFrames;
 	@Column(name = "is_swarm_mood")
-	private boolean isSwarmMood;
+	private boolean swarmMood;
 	private double temperature;
 	private String notes;
-	private int status;	
+	private int status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hive_id")
@@ -73,12 +76,12 @@ public class Inspection {
 		this.hasClosedBrood = hasClosedBrood;
 	}
 
-	public boolean isQueenPresent() {
-		return isQueenPresent;
+	public boolean getQueenPresent() {
+		return queenPresent;
 	}
 
-	public void setQueenPresent(boolean isQueenPresent) {
-		this.isQueenPresent = isQueenPresent;
+	public void setQueenPresent(boolean queenPresent) {
+		this.queenPresent = queenPresent;
 	}
 
 	public int getNumberOfFrames() {
@@ -97,12 +100,12 @@ public class Inspection {
 		this.numberOfBroodFrames = numberOfBroodFrames;
 	}
 
-	public boolean isSwarmMood() {
-		return isSwarmMood;
+	public boolean getSwarmMood() {
+		return swarmMood;
 	}
 
-	public void setSwarmMood(boolean isSwarmMood) {
-		this.isSwarmMood = isSwarmMood;
+	public void setSwarmMood(boolean swarmMood) {
+		this.swarmMood = swarmMood;
 	}
 
 	public double getTemperature() {

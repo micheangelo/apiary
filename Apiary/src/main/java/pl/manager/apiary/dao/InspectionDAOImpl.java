@@ -2,6 +2,8 @@ package pl.manager.apiary.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +48,10 @@ public class InspectionDAOImpl implements InspectionDAO {
 	@Override
 	@Transactional(readOnly = true)
 	public Inspection getInspection(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		Inspection i = (Inspection)session.load(Inspection.class, new Integer(id));
-		return i;
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("SELECT i FROM Inspection i " + " LEFT JOIN FETCH " + " i.hive h WHERE i.id=:id");
+		q.setParameter("id", id);
+		return (Inspection) q.getSingleResult(); 
 	}
 
 	@Override

@@ -61,11 +61,11 @@ public class HiveController {
 	}
 
 	@RequestMapping(value = { "save", "edit/save" })
-	public String saveHive(@ModelAttribute("hive") Hive h) {
-		if (h.getId() > 0)
-			hiveService.updateHive(h);
+	public String saveHive(@ModelAttribute("hive") Hive hive) {
+		if (hive.getId() > 0)
+			hiveService.updateHive(hive);
 		else
-			hiveService.addHive(h);
+			hiveService.addHive(hive);
 		return "redirect:/hives";
 	}
 

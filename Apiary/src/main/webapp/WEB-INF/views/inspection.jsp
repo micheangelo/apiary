@@ -43,10 +43,10 @@
 					<form:hidden path="id" />
 				</c:if>
 				<tr>
-					<td><form:label path="date">
+					<td><form:label path="inspectionDate">
 							<spring:message code="inspection.date" />
 						</form:label></td>
-					<td><form:input path="date" id="datepicker" /></td>
+					<td><form:input path="inspectionDate" id="datepicker" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="hasOpenBrood">
@@ -61,10 +61,10 @@
 					<td><form:input path="hasClosedBrood" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="isQueenPresent">
+					<td><form:label path="queenPresent">
 							<spring:message code="inspection.queen" />
 						</form:label></td>
-					<td><form:input path="isQueenPresent" /></td>
+					<td><form:input path="queenPresent" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="numberOfFrames">
@@ -79,10 +79,10 @@
 					<td><form:input path="numberOfBroodFrames" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="isSwarmMood">
-							<spring:message code="inspection.swarm.mood" />
+					<td><form:label path="swarmMood">
+							<spring:message code="inspection.swarmMood" />
 						</form:label></td>
-					<td><form:input path="isSwarmMood" /></td>
+					<td><form:input path="swarmMood" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="temperature">
@@ -97,11 +97,15 @@
 					<td><form:input path="status" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><c:if test="${!empty inspection.description}">
-							<input type="submit" value="<spring:message code="global.save"/>" />
-						</c:if> <c:if test="${empty inspection.description}">
-							<input type="submit" value="<spring:message code="global.add"/>" />
-						</c:if> <input type="button"
+					<td colspan="2"><c:choose>
+							<c:when test="${inspection.id gt 0}">
+								<input type="submit"
+									value="<spring:message code="global.save"/>" />
+							</c:when>
+							<c:otherwise>
+								<input type="submit" value="<spring:message code="global.add"/>" />
+							</c:otherwise>
+						</c:choose> <input type="button"
 						value="<spring:message code="global.cancel"/>"
 						onclick="history.back()" /></td>
 				</tr>

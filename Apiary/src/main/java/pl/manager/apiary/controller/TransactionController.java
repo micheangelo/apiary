@@ -55,9 +55,9 @@ public class TransactionController {
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addTransaction(Model model) {
-		Transaction t = new Transaction();
+		Transaction transaction = new Transaction();
 		model.addAttribute("operation", ApiaryConst.ADD);
-		model.addAttribute("transaction", t);
+		model.addAttribute("transaction", transaction);
 		model.addAttribute("listTransactionTypes", this.transactionTypeService.listTransactionTypes());
 		return "transaction";
 	}
@@ -77,11 +77,11 @@ public class TransactionController {
 	}
 
 	@RequestMapping(value = { "save", "edit/save" })
-	public String saveTransaction(@ModelAttribute("transaction") Transaction t) {
-		if (t.getId() > 0)
-			this.transactionService.updateTransaction(t);
+	public String saveTransaction(@ModelAttribute("transaction") Transaction transaction) {
+		if (transaction.getId() > 0)
+			this.transactionService.updateTransaction(transaction);
 		else
-			this.transactionService.addTransaction(t);
+			this.transactionService.addTransaction(transaction);
 		return "redirect:/transactions";
 	}
 

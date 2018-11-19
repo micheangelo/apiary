@@ -56,11 +56,11 @@ public class TransactionTypeController {
 	}
 
 	@RequestMapping(value = { "save", "edit/save" })
-	public String saveTransaction(@ModelAttribute("transactionType") TransactionType t) {
-		if (t.getId() > 0)
-			this.transactionTypeService.updateTransactionType(t);
+	public String saveTransaction(@ModelAttribute("transactionType") TransactionType transactionType) {
+		if (transactionType.getId() > 0)
+			this.transactionTypeService.updateTransactionType(transactionType);
 		else
-			this.transactionTypeService.addTransactionType(t);
+			this.transactionTypeService.addTransactionType(transactionType);
 		return "redirect:/transaction-types";
 	}
 

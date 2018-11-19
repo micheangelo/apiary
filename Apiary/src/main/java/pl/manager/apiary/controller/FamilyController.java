@@ -73,13 +73,13 @@ public class FamilyController {
 	}
 
 	@RequestMapping(value = { "save", "edit/save" })
-	public String saveFamily(@ModelAttribute("family") Family f) {
-		if (f.getHive() == null || f.getHive().getId() == -1)
-			f.setHive(null);
-		if (f.getId() > 0)
-			this.familyService.updateFamily(f);
+	public String saveFamily(@ModelAttribute("family") Family family) {
+		if (family.getHive() == null || family.getHive().getId() == -1)
+			family.setHive(null);
+		if (family.getId() > 0)
+			this.familyService.updateFamily(family);
 		else
-			this.familyService.addFamily(f);
+			this.familyService.addFamily(family);
 		return "redirect:/families";
 	}
 

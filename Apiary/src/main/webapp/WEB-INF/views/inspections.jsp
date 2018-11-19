@@ -40,7 +40,7 @@
 				<th width="120"><spring:message code="inspection.queen" /></th>
 				<th width="120"><spring:message code="inspection.frames.count" /></th>
 				<th width="120"><spring:message code="inspection.frames.brood.count" /></th>
-				<th width="120"><spring:message code="insperction.swarm.mood" /></th>
+				<th width="120"><spring:message code="inspection.swarmMood" /></th>
 				<th width="120"><spring:message code="inspection.temperature" /></th>
 				<th width="120"><spring:message code="inspection.status" /></th>
 				<th width="60"><spring:message code="global.edit" /></th>
@@ -51,10 +51,10 @@
 					<td>${inspection.inspectionDate}</td>
 					<td>${inspection.hasOpenBrood}</td>
 					<td>${inspection.hasClosedBrood}</td>
-					<td>${inspection.isQueenPresent}</td>
+					<td>${inspection.queenPresent}</td>
 					<td>${inspection.numberOfFrames}</td>
 					<td>${inspection.numberOfBroodFrames}</td>
-					<td>${inspection.isSwarmMood}</td>
+					<td>${inspection.swarmMood}</td>
 					<td>${inspection.temperature}</td>
 					<td>${inspection.status}</td>
 					<td align="center"><a
