@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.manager.apiary.model.Inspection;
 import pl.manager.apiary.service.InspectionService;
 import pl.manager.apiary.utils.ApiaryConst;
+import pl.manager.apiary.utils.CustomDropDownList;
 
 @Controller
 @RequestMapping(value = "/inspections")
@@ -46,7 +47,11 @@ public class InspectionController {
 	public String addInspection(Model model) {
 		Inspection inspection = new Inspection();
 		model.addAttribute("operation", ApiaryConst.ADD);
-		model.addAttribute("inspection", inspection);		
+		model.addAttribute("inspection", inspection);	
+		model.addAttribute("openBroodList",  CustomDropDownList.getList());
+		model.addAttribute("closedBroodList",  CustomDropDownList.getList());
+		model.addAttribute("queenPresentList",  CustomDropDownList.getList());
+		model.addAttribute("swarmMoodList",  CustomDropDownList.getList());
 		return "inspection";
 	}
 	
@@ -60,6 +65,10 @@ public class InspectionController {
 	public String editInspection(@PathVariable("id") int id, Model model) {
 		model.addAttribute("inspection", this.inspectionService.getInspectionById(id));
 		model.addAttribute("operation", ApiaryConst.EDIT);
+		model.addAttribute("openBroodList",  CustomDropDownList.getList());
+		model.addAttribute("closedBroodList",  CustomDropDownList.getList());
+		model.addAttribute("queenPresentList",  CustomDropDownList.getList());
+		model.addAttribute("swarmMoodList",  CustomDropDownList.getList());
 		return "inspection";
 	}
 

@@ -49,8 +49,8 @@
 			<c:forEach items="${listInspections.pageList}" var="inspection">
 				<tr>
 					<td>${inspection.inspectionDate}</td>
-					<td>${inspection.hasOpenBrood}</td>
-					<td>${inspection.hasClosedBrood}</td>
+					<td>${inspection.openedBrood}</td>
+					<td>${inspection.closedBrood}</td>
 					<td>${inspection.queenPresent}</td>
 					<td>${inspection.numberOfFrames}</td>
 					<td>${inspection.numberOfBroodFrames}</td>

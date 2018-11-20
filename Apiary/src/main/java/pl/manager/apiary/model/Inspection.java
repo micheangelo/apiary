@@ -25,17 +25,17 @@ public class Inspection {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date inspectionDate;
 	@Column(name = "open_brood")
-	private boolean hasOpenBrood;
+	private Boolean openedBrood;
 	@Column(name = "closed_brood")
-	private boolean hasClosedBrood;
+	private Boolean closedBrood;
 	@Column(name = "queen_present")
-	private boolean queenPresent;
+	private Boolean queenPresent;
 	@Column(name = "number_of_frames")
 	private int numberOfFrames;
 	@Column(name = "number_of_brood_frames")
 	private int numberOfBroodFrames;
 	@Column(name = "is_swarm_mood")
-	private boolean swarmMood;
+	private Boolean swarmMood;
 	private double temperature;
 	private String notes;
 	private int status;
@@ -60,27 +60,27 @@ public class Inspection {
 		this.inspectionDate = inspectionDate;
 	}
 
-	public boolean isHasOpenBrood() {
-		return hasOpenBrood;
+	public Boolean getOpenedBrood() {
+		return openedBrood;
 	}
 
-	public void setHasOpenBrood(boolean hasOpenBrood) {
-		this.hasOpenBrood = hasOpenBrood;
+	public void setOpenedBrood(Boolean openedBrood) {
+		this.openedBrood = openedBrood;
 	}
 
-	public boolean isHasClosedBrood() {
-		return hasClosedBrood;
+	public Boolean getClosedBrood() {
+		return closedBrood;
 	}
 
-	public void setHasClosedBrood(boolean hasClosedBrood) {
-		this.hasClosedBrood = hasClosedBrood;
+	public void setClosedBrood(Boolean closedBrood) {
+		this.closedBrood = closedBrood;
 	}
 
-	public boolean getQueenPresent() {
+	public Boolean getQueenPresent() {
 		return queenPresent;
 	}
 
-	public void setQueenPresent(boolean queenPresent) {
+	public void setQueenPresent(Boolean queenPresent) {
 		this.queenPresent = queenPresent;
 	}
 
@@ -100,11 +100,11 @@ public class Inspection {
 		this.numberOfBroodFrames = numberOfBroodFrames;
 	}
 
-	public boolean getSwarmMood() {
+	public Boolean getSwarmMood() {
 		return swarmMood;
 	}
 
-	public void setSwarmMood(boolean swarmMood) {
+	public void setSwarmMood(Boolean swarmMood) {
 		this.swarmMood = swarmMood;
 	}
 

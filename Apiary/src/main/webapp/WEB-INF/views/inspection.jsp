@@ -49,22 +49,28 @@
 					<td><form:input path="inspectionDate" id="datepicker" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="hasOpenBrood">
+					<td><form:label path="openedBrood">
 							<spring:message code="inspection.opened.brood" />
 						</form:label></td>
-					<td><form:input path="hasOpenBrood" /></td>
+					<td><form:select path="openedBrood">
+							<form:options items="${openBroodList}" />
+						</form:select></td>
 				</tr>
 				<tr>
-					<td><form:label path="hasClosedBrood">
+					<td><form:label path="closedBrood">
 							<spring:message code="inspection.closed.brood" />
 						</form:label></td>
-					<td><form:input path="hasClosedBrood" /></td>
+					<td><form:select path="closedBrood">
+							<form:options items="${closedBroodList}" />
+						</form:select></td>
 				</tr>
 				<tr>
 					<td><form:label path="queenPresent">
 							<spring:message code="inspection.queen" />
 						</form:label></td>
-					<td><form:input path="queenPresent" /></td>
+					<td><form:select path="queenPresent">
+							<form:options items="${queenPresentList}" />
+						</form:select></td>
 				</tr>
 				<tr>
 					<td><form:label path="numberOfFrames">
@@ -82,7 +88,9 @@
 					<td><form:label path="swarmMood">
 							<spring:message code="inspection.swarmMood" />
 						</form:label></td>
-					<td><form:input path="swarmMood" /></td>
+					<td><form:select path="queenPresent">
+							<form:options items="${swarmMoodList}" />
+						</form:select></td>
 				</tr>
 				<tr>
 					<td><form:label path="temperature">
