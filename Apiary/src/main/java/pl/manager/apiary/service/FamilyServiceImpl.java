@@ -9,9 +9,9 @@ import pl.manager.apiary.model.Family;
 
 public class FamilyServiceImpl implements FamilyService {
 
-	@Autowired
 	private FamilyDAO familyDAO;
 
+	@Autowired
 	public void setFamilyDAO(FamilyDAO familyDAO) {
 		this.familyDAO = familyDAO;
 	}

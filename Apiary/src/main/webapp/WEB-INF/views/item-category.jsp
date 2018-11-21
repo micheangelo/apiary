@@ -5,11 +5,11 @@
 
 <html>
 <head>
-<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
-<title><spring:message code="transaction.type.edit" /></title>
+<link href="<c:url value="/resources/css/style.css" />" type="text/css" rel="stylesheet">
+<title><spring:message code="item.category.edit" /></title>
 </head>
 <body>
 	<a id="ddmenuLink"
@@ -18,37 +18,31 @@
 		<h3>
 			<c:choose>
 				<c:when test="${operation == 'add'}">
-					<spring:message code="transaction.type.add" />
+					<spring:message code="item.category.add" />
 				</c:when>
 				<c:otherwise>
-					<spring:message code="transaction.type.edit" />
+					<spring:message code="item.category.edit" />
 				</c:otherwise>
 			</c:choose>
 		</h3>
-		<form:form action="save" modelAttribute="transactionType">
+		<form:form action="save" modelAttribute="itemCategory">
 			<table>
-				<c:if test="${transactionType.id gt 0}">
+				<c:if test="${itemCategory.id gt 0}">
 					<form:hidden path="id" />
 				</c:if>
-				<c:if test="${!empty transactionType.name}">
-				<tr>
-					<td><form:label path="name">
-							<spring:message code="transaction.type.name" />
-						</form:label></td>
-					<td><form:input path="name" /></td>
-				</tr>
-				<tr>
-					<td><form:label path="symbol">
-							<spring:message code="transaction.type.symbol" />
-						</form:label></td>
-					<td><form:input path="symbol" /></td>
-				</tr>
+				<c:if test="${!empty itemCategory.name}">
+					<tr>
+						<td><form:label path="name">
+								<spring:message code="itemCategory.name" />
+							</form:label></td>
+						<td><form:input path="name" /></td>
+					</tr>
 				</c:if>
 
 				<tr>
-					<td colspan="2"><c:if test="${!empty transactionType.id}">
+					<td colspan="2"><c:if test="${!empty itemCategory.id}">
 							<input type="submit" value="<spring:message code="global.save"/>" />
-						</c:if> <c:if test="${empty transactionType.id}">
+						</c:if> <c:if test="${empty itemCategory.id}">
 							<input type="submit" value="<spring:message code="global.add"/>" />
 						</c:if> <input type="button"
 						value="<spring:message code="global.cancel"/>"

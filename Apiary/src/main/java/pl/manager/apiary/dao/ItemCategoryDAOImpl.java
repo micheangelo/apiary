@@ -4,18 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.manager.apiary.model.Family;
+import pl.manager.apiary.model.ItemCategory;
 
-@Repository
-public class FamilyDAOImpl implements FamilyDAO {
-
-	private static final Logger logger = LoggerFactory.getLogger(FamilyDAOImpl.class);
+public class ItemCategoryDAOImpl implements ItemCategoryDAO {
 
 	private SessionFactory sessionFactory;
 
@@ -26,43 +20,40 @@ public class FamilyDAOImpl implements FamilyDAO {
 
 	@Override
 	@Transactional
-	public void addFamily(Family f) {
+	public void addItemCategory(ItemCategory itemCategory) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(f);
+		session.persist(itemCategory);
 	}
 
 	@Override
 	@Transactional
-	public void updateFamily(Family f) {
+	public void updateItemCategory(ItemCategory itemCategory) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(f);
+		session.update(itemCategory);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Family> listFamilies() {
+	@SuppressWarnings("unchecked")
+	public List<ItemCategory> listItemCategories() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Family> families = session.createQuery("from Family", Family.class).list();
-		return families;
+		List<ItemCategory> itemCategories = session.createQuery("from ItemCategory").list();
+		return itemCategories;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Family getFamilyById(int id) {
+	public ItemCategory getItemCategoryById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Family f = (Family) session.load(Family.class, new Integer(id));
-		logger.info("Family loaded successfully, family details=" + f);
-		return f;
+		ItemCategory itemCategory = session.load(ItemCategory.class, new Integer(id));
+		return itemCategory;
 	}
 
 	@Override
 	@Transactional
-	public void removeFamily(int id) {
+	public void removeItemCategory(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Family f = getFamilyById(id);
-		if (f != null)
-			session.delete(f);
-
+		session.delete(getItemCategoryById(id));
 	}
 
 }

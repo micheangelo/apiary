@@ -49,6 +49,7 @@
 				<beans:value>pl.manager.apiary.model.Hive</beans:value>
 				<beans:value>pl.manager.apiary.model.Family</beans:value>
 				<beans:value>pl.manager.apiary.model.Inspection</beans:value>
+				<beans:value>pl.manager.apiary.model.ItemCategory</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -114,6 +115,17 @@
 		class="pl.manager.apiary.service.InspectionServiceImpl">
 		<beans:property name="inspectionDAO"
 			ref="inspectionDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="itemCategoryDAO"
+		class="pl.manager.apiary.dao.ItemCategoryDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
+	<beans:bean id="itemCategoryService"
+		class="pl.manager.apiary.service.ItemCategoryServiceImpl">
+		<beans:property name="itemCategoryDAO"
+			ref="itemCategoryDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"

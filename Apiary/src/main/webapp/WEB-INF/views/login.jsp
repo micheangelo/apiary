@@ -9,7 +9,8 @@
 %>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: head(title=~{::title},links=~{})">
-<title>Please Login</title>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />"
+	>
 <style>
 .outer-div {
 	padding: 30px;
@@ -20,15 +21,13 @@
 	width: 100px;
 	height: 100px;
 }
-
-.html {
-	font-family: Arial, sans-serif;
-}
 </style>
+<title>Please Login</title>
 </head>
 <body th:include="layout :: body" th:with="content=~{::content}">
 	<div class="outer-div">
 		<div class="inner-div" th:fragment="content" th:align="center">
+			<!--<form name="f" th:action="@{/login}" method="post">-->
 			<form name="f" th:action="@{/login}" method="post">
 				<fieldset>
 					<legend>Zaloguj się</legend>

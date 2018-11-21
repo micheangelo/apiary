@@ -11,9 +11,9 @@ import pl.manager.apiary.model.Inspection;
 @Service
 public class InspectionServiceImpl implements InspectionService {
 
-	@Autowired
 	private InspectionDAO inspectionDAO;
 
+	@Autowired
 	public void setInspectionDAO(InspectionDAO inspectionDAO) {
 		this.inspectionDAO = inspectionDAO;
 	}

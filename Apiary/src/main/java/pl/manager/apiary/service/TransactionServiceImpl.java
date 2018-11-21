@@ -11,9 +11,9 @@ import pl.manager.apiary.model.Transaction;
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
-	@Autowired
 	private TransactionDAO transactionDAO;
 
+	@Autowired
 	public void setTransactionDAO(TransactionDAO transactionDAO) {
 		this.transactionDAO = transactionDAO;
 	}
@@ -39,7 +39,7 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public void removeTransaction(int id) {	
+	public void removeTransaction(int id) {
 		this.transactionDAO.deleteTransaction(id);
 	}
 

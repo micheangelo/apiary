@@ -5,6 +5,7 @@
 
 <html>
 <head>
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/jquery/jquery-ui.css" />"

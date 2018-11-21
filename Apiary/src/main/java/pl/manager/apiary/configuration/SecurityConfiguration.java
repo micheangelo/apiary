@@ -18,7 +18,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
+		http.authorizeRequests().antMatchers("/resources/**")
+        .permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.failureUrl("/login?error").permitAll().and().logout().logoutSuccessUrl("/login?logout").permitAll()
 				.and().csrf().disable();
 	}

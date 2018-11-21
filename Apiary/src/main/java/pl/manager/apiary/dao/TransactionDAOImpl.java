@@ -18,9 +18,9 @@ public class TransactionDAOImpl implements TransactionDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransactionDAOImpl.class);
 
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}

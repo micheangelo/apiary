@@ -15,9 +15,9 @@ import pl.manager.apiary.model.Inspection;
 @Repository
 public class InspectionDAOImpl implements InspectionDAO {
 
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -41,7 +41,7 @@ public class InspectionDAOImpl implements InspectionDAO {
 	@SuppressWarnings("unchecked")
 	public List<Inspection> listInspections() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Inspection> inspectionList  = session.createQuery("from Inspection").list();
+		List<Inspection> inspectionList = session.createQuery("from Inspection").list();
 		return inspectionList;
 	}
 
@@ -51,7 +51,7 @@ public class InspectionDAOImpl implements InspectionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("SELECT i FROM Inspection i " + " LEFT JOIN FETCH " + " i.hive h WHERE i.id=:id");
 		q.setParameter("id", id);
-		return (Inspection) q.getSingleResult(); 
+		return (Inspection) q.getSingleResult();
 	}
 
 	@Override

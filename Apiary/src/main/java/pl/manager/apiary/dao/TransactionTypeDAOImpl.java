@@ -13,9 +13,9 @@ import pl.manager.apiary.model.TransactionType;
 @Repository
 public class TransactionTypeDAOImpl implements TransactionTypeDAO {
 
-	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}

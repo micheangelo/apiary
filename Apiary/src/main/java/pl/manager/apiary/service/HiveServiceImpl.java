@@ -11,9 +11,9 @@ import pl.manager.apiary.model.Hive;
 @Service
 public class HiveServiceImpl implements HiveService {
 
-	@Autowired
 	private HiveDAO hiveDAO;
 
+	@Autowired
 	public void setHiveDAO(HiveDAO hiveDAO) {
 		this.hiveDAO = hiveDAO;
 	}
@@ -32,12 +32,12 @@ public class HiveServiceImpl implements HiveService {
 	public List<Hive> listHives() {
 		return this.hiveDAO.listHives();
 	}
-	
+
 	@Override
 	public List<Hive> listFreeHives() {
 		return this.hiveDAO.listFreeHives();
 	}
-	
+
 	@Override
 	public List<Hive> listFreeAndCurrentHives(int id) {
 		return this.hiveDAO.listFreeAndCurrentHives(id);

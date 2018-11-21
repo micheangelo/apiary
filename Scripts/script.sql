@@ -51,4 +51,19 @@ CREATE TABLE inspection (
  status CHAR(1)
 )
 /
+CREATE TABLE item_category(
+	id INT AUTO_INCREMENT primary key NOT NULL,
+	name VARCHAR(100)
+)
+/
+CREATE TABLE item (
+	id INT AUTO_INCREMENT primary key NOT NULL,
+	name VARCHAR(200),
+	quantity DECIMAL (5,2),
+	description VARCHAR(1000),
+	item_category INT,
+	FOREIGN KEY (item_category)
+		REFERENCES item_category(id)
+)
+/
 
