@@ -50,6 +50,7 @@
 				<beans:value>pl.manager.apiary.model.Family</beans:value>
 				<beans:value>pl.manager.apiary.model.Inspection</beans:value>
 				<beans:value>pl.manager.apiary.model.ItemCategory</beans:value>
+				<beans:value>pl.manager.apiary.model.Item</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -58,6 +59,15 @@
 				</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean
+		class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<beans:property name="propertyEditorRegistrars">
+			<beans:list>
+				<beans:ref bean="customPropertyEditorRegistrar" />
+			</beans:list>
 		</beans:property>
 	</beans:bean>
 
@@ -82,7 +92,6 @@
 		<beans:property name="transactionTypeDAO"
 			ref="transactionTypeDAO"></beans:property>
 	</beans:bean>
-
 
 	<beans:bean id="hiveDAO"
 		class="pl.manager.apiary.dao.HiveDAOImpl">
@@ -116,7 +125,7 @@
 		<beans:property name="inspectionDAO"
 			ref="inspectionDAO"></beans:property>
 	</beans:bean>
-	
+
 	<beans:bean id="itemCategoryDAO"
 		class="pl.manager.apiary.dao.ItemCategoryDAOImpl">
 		<beans:property name="sessionFactory"
@@ -126,6 +135,16 @@
 		class="pl.manager.apiary.service.ItemCategoryServiceImpl">
 		<beans:property name="itemCategoryDAO"
 			ref="itemCategoryDAO"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="itemDAO"
+		class="pl.manager.apiary.dao.ItemDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
+	<beans:bean id="itemService"
+		class="pl.manager.apiary.service.ItemServiceImpl">
+		<beans:property name="itemDAO" ref="itemDAO"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="messageSource"

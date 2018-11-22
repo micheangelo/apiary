@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +19,22 @@ public class Item {
 	private String name;
 	private double quantity;
 	private String description;
+	@ManyToOne
+	@JoinColumn(name = "item_category")
 	private ItemCategory itemCategory;
+
+	public Item() {
+
+	}
+
+	public Item(int id, String name, double quantity, String description, ItemCategory itemCategory) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
+		this.description = description;
+		this.itemCategory = itemCategory;
+	}
 
 	public int getId() {
 		return id;

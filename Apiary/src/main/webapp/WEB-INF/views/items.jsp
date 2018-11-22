@@ -1,4 +1,4 @@
-<%@page import="pl.manager.apiary.model.ItemCategory"%>
+<%@page import="pl.manager.apiary.model.Item"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -15,54 +15,56 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
-<title><spring:message code="item.category.title" /></title>
-<style type="text/css">
-.div {
-	margin: 20px;
-}
-</style>
+<title><spring:message code="item.title" /></title>
+
 </head>
 <body>
 	<a id="ddmenuLink" href="resources/ddmenu-source.html">Menu</a>
 	<div class="container" style="margin-top: 20px;">
-		<jsp:useBean id="listItemCategories" scope="request"
-			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.ItemCategory>" />
-		<c:url value="/item-categories" var="pagedLink">
+		<jsp:useBean id="listItems" scope="request"
+			type="org.springframework.beans.support.PagedListHolder<pl.manager.apiary.model.Item>" />
+		<c:url value="/items" var="pagedLink">
 			<c:param name="p" value="~" />
 		</c:url>
 
 		<h3>
-			<spring:message code="item.category.list" />
+			<spring:message code="item.list" />
 		</h3>
-		<tg:paging pagedListHolder="${listItemCategories}"
+		<tg:paging pagedListHolder="${listItems}"
 			pagedLink="${pagedLink}" />
 		<table class="tg">
 			<tr>
-				<th width="120"><spring:message code="item.category.name" /></th>
+				<th width="120"><spring:message code="item.name" /></th>
+				<th width="120"><spring:message code="item.quantity" /></th>
+				<th width="120"><spring:message code="item.description" /></th>
+				<th width="120"><spring:message code="item.category" /></th>
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
-			<c:forEach items="${listItemCategories.pageList}" var="itemCategory">
+			<c:forEach items="${listItems.pageList}" var="item">
 				<tr>
-					<td>${itemCategory.name}</td>
+					<td>${item.name}</td>
+					<td>${item.quantity}</td>
+					<td>${item.description}</td>
+					<td>${item.category}</td>					
 					<td align="center"><a
-						href="<c:url value='item-categories/edit/${itemCategory.id}' />"><img
+						href="<c:url value='items/edit/${item.id}' />"><img
 							src="resources/icons/edit.png"
 							alt=<spring:message
 								code="global.edit" />></a></td>
 					<td align="center"><a
-						href="<c:url value='item-categoris/remove/${itemCategory.id}' />"><img
+						href="<c:url value='items/remove/${item.id}' />"><img
 							src="resources/icons/delete.png"
 							alt=<spring:message
 								code="global.delete" />></a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<tg:paging pagedListHolder="${listItemCategories}"
+		<tg:paging pagedListHolder="${listItems}"
 			pagedLink="${pagedLink}" />
 		<br />
-		<form:form action="item-categories/add" modelAttribute="itemCategory">
-			<input type="submit" name="addItemCategory"
+		<form:form action="items/add" modelAttribute="item">
+			<input type="submit" name="addItem"
 				value="<spring:message code="global.add"/>" />
 		</form:form>
 	</div>

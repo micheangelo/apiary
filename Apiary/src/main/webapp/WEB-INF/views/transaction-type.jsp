@@ -30,7 +30,6 @@
 				<c:if test="${transactionType.id gt 0}">
 					<form:hidden path="id" />
 				</c:if>
-				<c:if test="${!empty transactionType.name}">
 				<tr>
 					<td><form:label path="name">
 							<spring:message code="transaction.type.name" />
@@ -43,7 +42,6 @@
 						</form:label></td>
 					<td><form:input path="symbol" /></td>
 				</tr>
-				</c:if>
 
 				<tr>
 					<td colspan="2"><c:if test="${!empty transactionType.id}">

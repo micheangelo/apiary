@@ -12,8 +12,8 @@
 <html>
 <head>
 <link href="<c:url value="/resources/css/ddmenu.css" />"
-	rel="stylesheet">
-<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
 <title><spring:message code="transaction.title" /></title>
 

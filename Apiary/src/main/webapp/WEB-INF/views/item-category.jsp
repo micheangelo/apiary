@@ -8,13 +8,13 @@
 <link href="<c:url value="/resources/css/ddmenu.css" />"
 	rel="stylesheet">
 <script src="<c:url value="/resources/js/ddmenu.js" />"></script>
-<link href="<c:url value="/resources/css/style.css" />" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" >
 <title><spring:message code="item.category.edit" /></title>
 </head>
 <body>
 	<a id="ddmenuLink"
 		href="${pageContext.request.contextPath}/resources/ddmenu-source.html">Menu</a>
-	<div class="container" style="margin: 20px;">
+	<div class="container">
 		<h3>
 			<c:choose>
 				<c:when test="${operation == 'add'}">
@@ -30,14 +30,13 @@
 				<c:if test="${itemCategory.id gt 0}">
 					<form:hidden path="id" />
 				</c:if>
-				<c:if test="${!empty itemCategory.name}">
-					<tr>
-						<td><form:label path="name">
-								<spring:message code="itemCategory.name" />
-							</form:label></td>
-						<td><form:input path="name" /></td>
-					</tr>
-				</c:if>
+
+				<tr>
+					<td><form:label path="name">
+							<spring:message code="item.category.name" />
+						</form:label></td>
+					<td><form:input path="name" /></td>
+				</tr>
 
 				<tr>
 					<td colspan="2"><c:if test="${!empty itemCategory.id}">

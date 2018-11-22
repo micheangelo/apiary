@@ -62,7 +62,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Transactional(readOnly = true)
 	public Transaction getTransactions(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Transaction t = (Transaction) session.load(Transaction.class, new Integer(id));
+		Transaction t = session.load(Transaction.class, new Integer(id));
 		logger.info("Transaction loaded successfully, transaction details=" + t);
 		return t;
 	}
