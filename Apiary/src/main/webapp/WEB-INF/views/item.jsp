@@ -54,10 +54,10 @@
 					<td><form:input path="description" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="itemCategory">
+					<td><form:label path="itemCategoryId">
 							<spring:message code="item.category" />
 						</form:label></td>
-					<td><form:select path="itemCategory">
+					<td><form:select path="itemCategoryId">
 							<form:option value="-1" label="...." />
 							<form:options items="${listItemCategories}" itemValue="id"
 								itemLabel="name" />
@@ -65,7 +65,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><c:choose>
-							<c:when test="${hive.id gt 0}">
+							<c:when test="${item.id gt 0}">
 								<input type="submit"
 									value="<spring:message code="global.save"/>" />
 							</c:when>

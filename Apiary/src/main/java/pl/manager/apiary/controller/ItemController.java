@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.manager.apiary.model.Item;
+import pl.manager.apiary.model.ItemCategory;
 import pl.manager.apiary.service.ItemCategoryService;
 import pl.manager.apiary.service.ItemService;
 import pl.manager.apiary.utils.ApiaryConst;
@@ -75,6 +76,10 @@ public class ItemController {
 
 	@RequestMapping(value = { "save", "edit/save" })
 	public String saveItem(@ModelAttribute("item") Item item) {
+		if(item.getItemCategoryId() > 0) {
+			ItemCategory category = this.itemCategoryService.getItemCategoryById(item.getItemCategoryId());
+			item.setItemCategory(category);
+		}
 		if (item.getId() > 0)
 			this.itemService.updateItem(item);
 		else

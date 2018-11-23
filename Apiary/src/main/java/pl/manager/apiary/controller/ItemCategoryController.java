@@ -21,7 +21,7 @@ import pl.manager.apiary.service.ItemCategoryService;
 import pl.manager.apiary.utils.ApiaryConst;
 
 @Controller
-@RequestMapping(value = "item-categories")
+@RequestMapping(value = "/item-categories")
 public class ItemCategoryController {
 
 	private ItemCategoryService itemCategoryService;

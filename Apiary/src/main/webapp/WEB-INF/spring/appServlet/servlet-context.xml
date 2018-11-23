@@ -62,15 +62,6 @@
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean
-		class="org.springframework.beans.factory.config.CustomEditorConfigurer">
-		<beans:property name="propertyEditorRegistrars">
-			<beans:list>
-				<beans:ref bean="customPropertyEditorRegistrar" />
-			</beans:list>
-		</beans:property>
-	</beans:bean>
-
 	<beans:bean id="transactionDAO"
 		class="pl.manager.apiary.dao.TransactionDAOImpl">
 		<beans:property name="sessionFactory"

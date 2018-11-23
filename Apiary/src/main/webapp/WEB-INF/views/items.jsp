@@ -37,7 +37,6 @@
 				<th width="120"><spring:message code="item.name" /></th>
 				<th width="120"><spring:message code="item.quantity" /></th>
 				<th width="120"><spring:message code="item.description" /></th>
-				<th width="120"><spring:message code="item.category" /></th>
 				<th width="60"><spring:message code="global.edit" /></th>
 				<th width="60"><spring:message code="global.delete" /></th>
 			</tr>
@@ -45,8 +44,7 @@
 				<tr>
 					<td>${item.name}</td>
 					<td>${item.quantity}</td>
-					<td>${item.description}</td>
-					<td>${item.category}</td>					
+					<td>${item.description}</td>				
 					<td align="center"><a
 						href="<c:url value='items/edit/${item.id}' />"><img
 							src="resources/icons/edit.png"

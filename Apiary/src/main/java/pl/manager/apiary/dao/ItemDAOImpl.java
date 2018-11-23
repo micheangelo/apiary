@@ -5,10 +5,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.manager.apiary.model.Item;
 
+@Repository
 public class ItemDAOImpl implements ItemDAO {
 	private SessionFactory sessionFactory;
 
@@ -45,6 +47,8 @@ public class ItemDAOImpl implements ItemDAO {
 	public Item getItem(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Item item = session.load(Item.class, new Integer(id));
+		if(item.getItemCategory() != null)
+			item.setItemCategoryId(item.getItemCategory().getId());
 		return item;
 	}
 

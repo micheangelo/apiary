@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "item")
@@ -22,6 +23,8 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "item_category")
 	private ItemCategory itemCategory;
+	@Transient
+	private int itemCategoryId;
 
 	public Item() {
 
@@ -74,6 +77,14 @@ public class Item {
 
 	public void setItemCategory(ItemCategory itemCategory) {
 		this.itemCategory = itemCategory;
+	}
+
+	public int getItemCategoryId() {
+		return itemCategoryId;
+	}
+
+	public void setItemCategoryId(int itemCategoryId) {
+		this.itemCategoryId = itemCategoryId;
 	}
 
 }
